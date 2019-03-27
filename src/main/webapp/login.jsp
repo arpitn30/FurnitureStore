@@ -39,7 +39,6 @@
 	    </div>
 	    <div class="Register-card text-center"><strong><strong>Don't have an</strong> <strong>account?</strong> <a class="text-danger" href="{{ url_for('register', event = event) }}"><strong>Register</strong> <strong>here</strong></a></strong>
 	    </div>    
-	
 		</div>
 
 </body>
