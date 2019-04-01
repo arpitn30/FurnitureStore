@@ -34,8 +34,6 @@
 	            <button class="btn btn-danger btn-block btn-lg btn-signin" type="submit">LOGIN </button>
 	        </form><a href="#" class="forgot-password">Forgot your password?</a>
 	        <p> </p>
-	        <div class="center-align">
-	            <p class="text-center">LOGIN VIA</p><img style="margin:5px" src="static/img/In.jpg"><img style="margin:5px" src="static/img/Google.png"><img style="margin:5px" src="static/img/FB.png"></div>
 	    </div>
 	    <div class="Register-card text-center"><strong><strong>Don't have an</strong> <strong>account?</strong> <a class="text-danger" href="{{ url_for('register', event = event) }}"><strong>Register</strong> <strong>here</strong></a></strong>
 	    </div>    
