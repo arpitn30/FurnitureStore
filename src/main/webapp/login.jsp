@@ -7,14 +7,17 @@
 	<title>Log In</title>
 
     <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
-    <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
     <script src="static/js/jquery-3.2.0.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="static/css/Google-Style-Login.css">
 	<link rel="stylesheet" href="static/css/login.css">
-		
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("false")) { %>
+		<script>alert("Incorrect Login/Password");</script>
+	<% } %>
 
 </head>
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
@@ -22,7 +25,7 @@
 	<div class="container">
 
 	    <div class="login-card">
-	        <form class="form-signin" action="" method="post">
+	        <form class="form-signin" action="shop/login" method="post">
 	            <input class="form-control" name="email" type="text" required="" placeholder="Email address" autofocus="" id="inputEmail">
 	            <input class="form-control" name="password" type="password" required="" placeholder="Password" id="inputPassword">
 	            <div class="checkbox">
@@ -38,6 +41,5 @@
 	    <div class="Register-card text-center"><strong><strong>Don't have an</strong> <strong>account?</strong> <a class="text-danger" href="{{ url_for('register', event = event) }}"><strong>Register</strong> <strong>here</strong></a></strong>
 	    </div>    
 		</div>
-
 </body>
 </html>
