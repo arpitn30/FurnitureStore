@@ -25,7 +25,14 @@
 */
 package com.shop.furniture;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
@@ -36,10 +43,43 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class Login {
 
+	/**
+	 * Opens the Login view when users visits the page
+	 * @return
+	 * @throws URISyntaxException
+	 */
 	@GET
 	@Path("/login")
-	public Response login() {
-		return Response.status(200).entity("Yoyo").build();
+	public Response login() throws URISyntaxException {
+		return Response.seeOther(new URI("../login.jsp")).build();
+	}
+	
+	@POST
+	@Path("/login")
+	public Response login(@FormParam("email") String email, @FormParam("password") String pass) throws URISyntaxException, ClassNotFoundException, SQLException {
+		JDBC db = new JDBC();
+		
+		db.setConnection();
+		ResultSet rs = db.getUser(email);
+		try {
+		while(rs.next()) {
+			if(rs.getString("password").equals(pass)) {
+				Session.setSession(rs.getInt("id"));
+				return Response.seeOther(new URI("../index.jsp")).build();
+			}
+		}
+		
+		return Response.seeOther(new URI("../login.jsp?status=false")).build();
+		}
+		finally {
+			db.closeConnection();
+		}
+	}
+	
+	@GET
+	@Path("/register")
+	public Response register() throws URISyntaxException {
+		return Response.seeOther(new URI("../register.jsp")).build();
 	}
 	
 }
