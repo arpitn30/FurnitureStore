@@ -58,7 +58,6 @@ public class Login {
 	@Path("/login")
 	public Response login(@FormParam("email") String email, @FormParam("password") String pass) throws URISyntaxException, ClassNotFoundException, SQLException {
 		JDBC db = new JDBC();
-		
 		db.setConnection();
 		ResultSet rs = db.getUser(email);
 		try {
@@ -80,6 +79,18 @@ public class Login {
 	@Path("/register")
 	public Response register() throws URISyntaxException {
 		return Response.seeOther(new URI("../register.jsp")).build();
+	}
+	
+	@POST
+	@Path("/register")
+	public Response register(@FormParam("name") String name,@FormParam("email") String email, @FormParam("password") String pass, @FormParam("password2") String pass2, @FormParam("secQues") String secQues) throws ClassNotFoundException, SQLException, URISyntaxException {
+		JDBC db = new JDBC();
+		db.setConnection();
+		ResultSet rs = db.getUser(email);
+		String str = "";
+		if(rs.next())
+			return Response.seeOther(new URI("../register.jsp?status=exists")).build();
+		return Response.ok().entity(str).build();
 	}
 	
 }

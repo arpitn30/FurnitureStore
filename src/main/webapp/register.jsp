@@ -9,19 +9,24 @@
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/form.css">
+    
+    <% if(request.getParameter("status") != null && request.getParameter("status").equals("exists")) { %>
+		<script>alert("This email is already registered");</script>
+	<% } %>
+    
 </head>
 
-<body>
+<body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
     <div class="row register-form">
         <div class="col-md-8 col-md-offset-2">
-            <form class="form-horizontal custom-form">
+            <form class="form-horizontal custom-form" action="shop/register" method="post">
                 <h1>Register Form</h1>
                 <div class="form-group">
                     <div class="col-sm-4 label-column">
                         <label class="control-label" for="name-input-field">Name </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" name="name" placeholder="Name">
                     </div>
                 </div>
                 <div class="form-group">
@@ -29,7 +34,7 @@
                         <label class="control-label" for="email-input-field">Email </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="email">
+                        <input class="form-control" type="email" name="email" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group">
@@ -37,7 +42,7 @@
                         <label class="control-label" for="pawssword-input-field">Password </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="password">
+                        <input class="form-control" type="password" name="password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,7 +50,7 @@
                         <label class="control-label" for="repeat-pawssword-input-field">Repeat Password </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="password">
+                        <input class="form-control" type="password" name="password2" placeholder="Retype Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -59,7 +64,7 @@
                         <label class="control-label" for="repeat-pawssword-input-field">Answer </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" name="secQues" placeholder="Answer to the security question">
                     </div>
                 </div>
                 <div class="checkbox">
