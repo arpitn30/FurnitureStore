@@ -31,6 +31,7 @@ import java.sql.SQLException;
 import java.sql.Savepoint;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 /**
@@ -65,6 +66,19 @@ public class JDBC {
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 		return rs;
+	}
+	
+	public boolean addUser(String name, String email, String password, String secQues) throws SQLException {
+		String qry = "INSERT INTO users (name, email, password, balance, secQues) VALUES (?, ?, ?, ?, ?);";
+		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
+		
+		st.setString(1, name);
+		st.setString(2, email);
+		st.setString(3, password);
+		st.setLong(4, 0);
+		st.setString(5, secQues);
+		
+		return st.execute();
 	}
 	
 	/**

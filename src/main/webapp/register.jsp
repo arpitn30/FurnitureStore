@@ -13,6 +13,10 @@
     <% if(request.getParameter("status") != null && request.getParameter("status").equals("exists")) { %>
 		<script>alert("This email is already registered");</script>
 	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("mismatch")) { %>
+		<script>alert("The passwords don't match");</script>
+	<% } %>
     
 </head>
 
@@ -26,7 +30,7 @@
                         <label class="control-label" for="name-input-field">Name </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text" name="name" placeholder="Name">
+                        <input class="form-control" type="text" name="name" placeholder="Name" required="">
                     </div>
                 </div>
                 <div class="form-group">
@@ -34,7 +38,7 @@
                         <label class="control-label" for="email-input-field">Email </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="email" name="email" placeholder="Email">
+                        <input class="form-control" type="email" name="email" placeholder="Email" required="">
                     </div>
                 </div>
                 <div class="form-group">
@@ -42,7 +46,7 @@
                         <label class="control-label" for="pawssword-input-field">Password </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="password" name="password" placeholder="Password">
+                        <input class="form-control" type="password" name="password" placeholder="Password" required="">
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,7 +54,7 @@
                         <label class="control-label" for="repeat-pawssword-input-field">Repeat Password </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="password" name="password2" placeholder="Retype Password">
+                        <input class="form-control" type="password" name="password2" placeholder="Retype Password" required="">
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,7 +68,7 @@
                         <label class="control-label" for="repeat-pawssword-input-field">Answer </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text" name="secQues" placeholder="Answer to the security question">
+                        <input class="form-control" type="text" name="secQues" placeholder="Answer to the security question" required="">
                     </div>
                 </div>
                 <div class="checkbox">

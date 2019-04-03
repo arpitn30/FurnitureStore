@@ -87,10 +87,15 @@ public class Login {
 		JDBC db = new JDBC();
 		db.setConnection();
 		ResultSet rs = db.getUser(email);
-		String str = "";
 		if(rs.next())
 			return Response.seeOther(new URI("../register.jsp?status=exists")).build();
-		return Response.ok().entity(str).build();
+		
+		if(!pass.equals(pass2))
+			return Response.seeOther(new URI("../register.jsp?status=mismatch")).build();
+		
+		db.addUser(name, email, pass, secQues);
+		
+		return Response.seeOther(new URI("../login.jsp?status=true")).build();
 	}
 	
 }

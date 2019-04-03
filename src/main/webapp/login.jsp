@@ -18,6 +18,10 @@
 	<% if(request.getParameter("status") != null && request.getParameter("status").equals("false")) { %>
 		<script>alert("Incorrect Login/Password");</script>
 	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("true")) { %>
+		<script>alert("Registration Successful");</script>
+	<% } %>
 
 </head>
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
@@ -38,7 +42,7 @@
 	        </form><a href="#" class="forgot-password">Forgot your password?</a>
 	        <p> </p>
 	    </div>
-	    <div class="Register-card text-center"><strong><strong>Don't have an</strong> <strong>account?</strong> <a class="text-danger" href="{{ url_for('register', event = event) }}"><strong>Register</strong> <strong>here</strong></a></strong>
+	    <div class="Register-card text-center"><strong><strong>Don't have an</strong> <strong>account?</strong> <a class="text-danger" href="shop/register"><strong>Register</strong> <strong>here</strong></a></strong>
 	    </div>    
 		</div>
 </body>
