@@ -43,6 +43,11 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class Login {
 
+	@GET
+	public Response homepage() throws URISyntaxException {
+		return Response.seeOther(new URI("../index.jsp")).build();
+	}
+	
 	/**
 	 * Opens the Login view when users visits the page
 	 * @return
