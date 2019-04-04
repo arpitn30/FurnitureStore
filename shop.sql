@@ -1,19 +1,28 @@
 CREATE SCHEMA `shop`;
 
-CREATE  TABLE `shop`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `name` VARCHAR(45) NOT NULL ,
-  `email` VARCHAR(45) NOT NULL ,
-  `password` VARCHAR(45) NOT NULL ,
-  `balance` BIGINT ZEROFILL UNSIGNED NULL ,
-  `secQues` VARCHAR(100) NULL ,
-  PRIMARY KEY (`id`) ,
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) ,
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) )
-COMMENT = 'The tables to store the details of the users of the Online F' /* comment truncated */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `balance` bigint(20) unsigned zerofill NOT NULL DEFAULT 0,
+  `secQues` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+);
+
+
 
 
 INSERT INTO `shop`.`users` (`name`, `email`, `password`, `balance`, `secQues`) VALUES ('Arpit', 'arpit@altran.com', '456123', 10000, 'gagan');
 
 
-
+CREATE  TABLE `shop`.`furniture` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `name` VARCHAR(200) NOT NULL ,
+  `type` VARCHAR(45) NOT NULL ,
+  `room` VARCHAR(45) NOT NULL ,
+  `price` INT NOT NULL DEFAULT 0 ,
+  PRIMARY KEY (`id`) ,
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) );

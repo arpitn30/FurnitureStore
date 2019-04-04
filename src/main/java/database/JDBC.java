@@ -23,16 +23,19 @@
 *
 	**********************************************************************
 */
-package com.shop.furniture;
+package database;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
+
+import models.Furniture;
 
 /**
  * @author Arpit Nandwani
@@ -79,6 +82,19 @@ public class JDBC {
 		st.setString(5, secQues);
 		
 		return st.execute();
+	}
+	
+	public ArrayList<Furniture> getFurniture() throws SQLException{
+		ArrayList<Furniture> list = new ArrayList<Furniture>();
+		String qry = "SELECT * FROM `furniture`;";
+		Statement statement = (Statement) connection.createStatement();
+		ResultSet rs = statement.executeQuery(qry);
+		
+		while(rs.next()) {
+			Furniture f = new Furniture(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+			list.add(f);
+		}
+		return list;
 	}
 	
 	/**

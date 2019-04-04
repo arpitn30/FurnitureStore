@@ -36,6 +36,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
+import database.JDBC;
+
 /**
  * @author Arpit Nandwani
  *
@@ -45,7 +47,7 @@ public class Login {
 
 	@GET
 	public Response homepage() throws URISyntaxException {
-		return Response.seeOther(new URI("../index.jsp")).build();
+			return Response.seeOther(new URI("../index.jsp")).build();
 	}
 	
 	/**
@@ -61,7 +63,7 @@ public class Login {
 	
 	@POST
 	@Path("/login")
-	public Response login(@FormParam("email") String email, @FormParam("password") String pass) throws URISyntaxException, ClassNotFoundException, SQLException {
+	public Response login(@FormParam("email") String email, @FormParam("password") String pass) throws ClassNotFoundException, SQLException, URISyntaxException {
 		JDBC db = new JDBC();
 		db.setConnection();
 		ResultSet rs = db.getUser(email);
