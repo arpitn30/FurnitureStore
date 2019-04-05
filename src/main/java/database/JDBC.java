@@ -25,11 +25,14 @@
 */
 package database;
 
+import java.net.URI;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.util.ArrayList;
+
+import javax.ws.rs.core.Response;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -95,6 +98,47 @@ public class JDBC {
 			list.add(f);
 		}
 		return list;
+	}
+	
+	public boolean addFurniture(String name, String type, String room, int price) throws SQLException {
+		String qry = "INSERT INTO `furniture` (`name`, `type`, `room`, `price`) VALUES (?, ?, ?, ?);";
+		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
+		
+		st.setString(1, name);
+		st.setString(2, type);
+		st.setString(3, room);
+		st.setInt(4, price);
+		
+		return st.execute();
+	}
+	
+	public boolean deleteFurniture(int fid) throws SQLException {
+		String qry = "DELETE FROM `furniture` WHERE `id`=?";
+		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
+		st.setInt(1, fid);
+		return st.execute();
+	}
+	
+	public boolean editFurniture(int fid, String name, String type, String room, int price) throws SQLException {
+		String qry = "UPDATE `furniture` SET `name`=?, `type`=?, `room`=?, `price`=? WHERE `id`=?;";
+		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
+		
+		st.setString(1, name);
+		st.setString(2, type);
+		st.setString(3, room);
+		st.setInt(4, price);
+		st.setInt(5, fid);
+		return st.execute();
+	}
+	
+	public boolean checkFurniture(String name) throws SQLException {
+		String qry = "SELECT * FROM `furniture` WHERE `name` = '" + name + "';";
+		Statement statement = (Statement) connection.createStatement();
+		ResultSet rs = statement.executeQuery(qry);
+		if(rs.next())
+			return false;
+		else
+			return true;
 	}
 	
 	/**

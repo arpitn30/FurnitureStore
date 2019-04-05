@@ -35,4 +35,11 @@ public class Session {
 	public static void setSession(int id) {
 		session = id;
 	}
+
+	/**
+	 * @return the session
+	 */
+	public static int getSession() {
+		return session;
+	}
 }
