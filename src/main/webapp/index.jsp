@@ -9,12 +9,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>header</title>
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap4.min.css">
     <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="static/css/Navbar-Apple.css">
     
     <script src="static/js/jquery.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap4.min.js"></script>
 </head>
 
 <body>
