@@ -38,7 +38,8 @@
 	            </div>
 	            <button class="btn btn-danger btn-block btn-lg btn-signin" type="submit">LOGIN </button>
 	        <p> </p>
+	        </form>
 	    </div> 
-		</div>
+	</div>
 </body>
 </html>

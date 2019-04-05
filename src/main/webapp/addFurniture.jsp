@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,16 +17,16 @@
 	
 </head>
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
-    <div class="add product-form">
+<div class="row register-form">
         <div class="col-md-8 col-md-offset-2">
             <form class="form-horizontal custom-form" action="shop/admin/addFurniture" method="post">
-                <h1>Add Product Page</h1>
+                <h1>Add Product</h1>
                 <div class="form-group">
                     <div class="col-sm-4 label-column">
                         <label class="control-label" for="name-input-field">Name </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text" name="name" placeholder="Name" required="">
+                        <input class="form-control" type="text" name="name" placeholder="Furniture Name" required="">
                     </div>
                 </div>
                 <div class="form-group">
@@ -34,7 +34,7 @@
                         <label class="control-label" for="type-input-field">Type </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text" name="type" placeholder="Type" required="">
+                        <input class="form-control" type="text" name="type" placeholder="Type of Furniture" required="">
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,14 +47,15 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4 label-column">
-                        <label class="control-label" for="price-input-field"> Price </label>
+                        <label class="control-label" for="price-input-field">Price </label>
                     </div>
                     <div class="col-sm-6 input-column">
-                        <input class="form-control" type="integer" name="price" placeholder=" Price" required="">
+                        <input class="form-control" type="number" name="price" placeholder="Price of the Furniture" required="">
                     </div>
                 </div>
-                </form>
-                </div>
-                </div>
+                <button class="btn btn-primary submit-button" type="submit">Register </button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
