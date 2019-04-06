@@ -23,23 +23,39 @@
 *
 	**********************************************************************
 */
-package com.shop.furniture;
+package session;
 
 /**
  * @author Arpit Nandwani
  *
  */
 public class Session {
-	public static int session = -1;
-	
-	public static void setSession(int id) {
-		session = id;
-	}
-
+	public static int id = -1;
+	public static String name = "";
 	/**
-	 * @return the session
+	 * @return the id
 	 */
-	public static int getSession() {
-		return session;
+	public static int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public static void setId(int id) {
+		Session.id = id;
+	}
+	
+	
+	/**
+	 * @return the name
+	 */
+	public static String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public static void setName(String name) {
+		Session.name = name;
 	}
 }

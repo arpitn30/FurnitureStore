@@ -38,6 +38,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import database.JDBC;
+import session.Session;
 
 /**
  * @author Arpit Nandwani
@@ -60,7 +61,7 @@ public class Admin {
 	public Response login(@FormParam("email") String email, @FormParam("password") String pass) throws ClassNotFoundException, SQLException, URISyntaxException {
 		
 		if(USER.equals(email) && PASS.equals(pass)) {
-			Session.setSession(0);
+			Session.setId(0);;
 			return Response.seeOther(new URI("../adminindex.jsp")).build();
 		}
 		

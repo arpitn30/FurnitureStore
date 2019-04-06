@@ -37,6 +37,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import database.JDBC;
+import session.Session;
 
 /**
  * @author Arpit Nandwani
@@ -70,7 +71,8 @@ public class Login {
 		try {
 		while(rs.next()) {
 			if(rs.getString("password").equals(pass)) {
-				Session.setSession(rs.getInt("id"));
+				Session.setId(rs.getInt("id"));
+				Session.setName(rs.getString("name"));
 				return Response.seeOther(new URI("../index.jsp")).build();
 			}
 		}
