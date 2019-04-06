@@ -37,6 +37,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import database.JDBC;
+import models.User;
 import session.Session;
 
 /**
@@ -67,21 +68,14 @@ public class Login {
 	public Response login(@FormParam("email") String email, @FormParam("password") String pass) throws ClassNotFoundException, SQLException, URISyntaxException {
 		JDBC db = new JDBC();
 		db.setConnection();
-		ResultSet rs = db.getUser(email);
-		try {
-		while(rs.next()) {
-			if(rs.getString("password").equals(pass)) {
-				Session.setId(rs.getInt("id"));
-				Session.setName(rs.getString("name"));
-				return Response.seeOther(new URI("../index.jsp")).build();
-			}
+		User user = db.getUser(email);
+		if(user.getPassword().equals(pass)) {
+			Session.setId(user.getId());
+			Session.setName(user.getName());
+			return Response.seeOther(new URI("../index.jsp")).build();
 		}
 		
 		return Response.seeOther(new URI("../login.jsp?status=false")).build();
-		}
-		finally {
-			db.closeConnection();
-		}
 	}
 	
 	@GET
@@ -95,8 +89,8 @@ public class Login {
 	public Response register(@FormParam("name") String name,@FormParam("email") String email, @FormParam("password") String pass, @FormParam("password2") String pass2, @FormParam("secQues") String secQues) throws ClassNotFoundException, SQLException, URISyntaxException {
 		JDBC db = new JDBC();
 		db.setConnection();
-		ResultSet rs = db.getUser(email);
-		if(rs.next())
+		User user = db.getUser(email);
+		if(user != null)
 			return Response.seeOther(new URI("../register.jsp?status=exists")).build();
 		
 		if(!pass.equals(pass2))

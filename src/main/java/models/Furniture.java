@@ -8,7 +8,7 @@
 *	  File Name	            	:	Furniture.java
 *	  Principal Author      	:	Arpit Nandwani
 *	  Subsystem Name        	:
-*	  Module Name           	:	com.shop.furniture
+*	  Module Name           	:	models
 *	  Date of First Release 	:	
 *	  Author					:	
 *	  Description           	:

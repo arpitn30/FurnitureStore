@@ -39,6 +39,7 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 import models.Furniture;
+import models.User;
 
 /**
  * @author Arpit Nandwani
@@ -67,11 +68,14 @@ public class JDBC {
 		connection = (Connection) DriverManager.getConnection(URL, user, pass);
 	}
 	
-	public ResultSet getUser(String email) throws SQLException {
+	public User getUser(String email) throws SQLException {
+		User user = null;
 		String qry = "SELECT * FROM `users` WHERE `email` = '" + email + "';";
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
-		return rs;
+		while(rs.next())
+			user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5), rs.getString(6));
+		return user;
 	}
 	
 	public boolean addUser(String name, String email, String password, String secQues) throws SQLException {
