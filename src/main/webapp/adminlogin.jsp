@@ -25,7 +25,7 @@
 	<div class="container">
 
 	    <div class="login-card">
-	        <form class="form-signin" action="shop/admin/adminlogin" method="post">
+	        <form class="form-signin" action="shop/admin/login" method="post">
 	            <input class="form-control" name="email" type="text" required="" placeholder="Email address" autofocus="" id="inputEmail">
 	            <input class="form-control" name="password" type="password" required="" placeholder="Password" id="inputPassword">
 	            <div class="checkbox">

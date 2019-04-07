@@ -27,7 +27,6 @@ package com.shop.furniture;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.ws.rs.FormParam;
@@ -41,7 +40,7 @@ import database.JDBC;
 import session.Session;
 
 /**
- * @author Arpit Nandwani
+ * 
  *
  */
 @Path("/admin")
@@ -51,13 +50,13 @@ public class Admin {
 	private static final String PASS = "superuser";
 
 	@GET
-	@Path("/adminlogin")
+	@Path("/login")
 	public Response login() throws URISyntaxException {
 		return Response.seeOther(new URI("../adminlogin.jsp")).build();
 	}
 	
 	@POST
-	@Path("/adminlogin")
+	@Path("/login")
 	public Response login(@FormParam("email") String email, @FormParam("password") String pass) throws ClassNotFoundException, SQLException, URISyntaxException {
 		
 		if(USER.equals(email) && PASS.equals(pass)) {

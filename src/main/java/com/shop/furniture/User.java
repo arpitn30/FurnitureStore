@@ -28,7 +28,7 @@ package com.shop.furniture;
 import javax.ws.rs.Path;
 
 /**
- * @author Arpit Nandwani
+ * 
  *
  */
 @Path("/user")

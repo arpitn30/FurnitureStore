@@ -27,7 +27,6 @@ package com.shop.furniture;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.ws.rs.FormParam;
@@ -41,7 +40,7 @@ import models.User;
 import session.Session;
 
 /**
- * @author Arpit Nandwani
+ * 
  *
  */
 @Path("/")

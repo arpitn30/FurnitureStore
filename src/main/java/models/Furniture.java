@@ -26,7 +26,7 @@
 package models;
 
 /**
- * @author Arpit Nandwani
+ * 
  *
  */
 public class Furniture {

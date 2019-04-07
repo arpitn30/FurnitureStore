@@ -25,14 +25,11 @@
 */
 package database;
 
-import java.net.URI;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.util.ArrayList;
-
-import javax.ws.rs.core.Response;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -42,7 +39,7 @@ import models.Furniture;
 import models.User;
 
 /**
- * @author Arpit Nandwani
+ * 
  *
  */
 public class JDBC {
