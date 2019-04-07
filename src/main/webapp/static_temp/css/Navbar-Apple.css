@@ -13,3 +13,17 @@
   line-height: 0;
 }
 
+.dropdown-dark {
+	background-color: #000!important;
+	opacity: 0.6;
+	text-align: center;
+}
+
+.dropdown-dark a {
+	color: #ffffff;
+}
+
+.dropdown-dark :hover {
+	background-color: #ff005d;
+	text-decoration: none;
+}

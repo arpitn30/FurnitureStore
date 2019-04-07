@@ -101,4 +101,11 @@ public class Login {
 		return Response.seeOther(new URI("../login.jsp?status=true")).build();
 	}
 	
+	@GET
+	@Path("/logout")
+	public Response logout() throws URISyntaxException {
+		Session.reset();
+		return Response.seeOther(new URI("../index.jsp")).build();
+	}
+	
 }

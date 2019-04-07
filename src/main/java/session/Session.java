@@ -30,8 +30,8 @@ package session;
  *
  */
 public class Session {
-	public static int id = -1;
-	public static String name = "";
+	private static int id = -1;
+	private static String name = null;
 	/**
 	 * @return the id
 	 */
@@ -57,5 +57,10 @@ public class Session {
 	 */
 	public static void setName(String name) {
 		Session.name = name;
+	}
+	
+	public static void reset() {
+		Session.id = -1;
+		Session.name = null;
 	}
 }
