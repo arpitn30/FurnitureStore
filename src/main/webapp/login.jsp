@@ -6,12 +6,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Log In</title>
 
-    <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
     <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-
     <script src="static/js/jquery-3.2.0.min.js"></script>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
-
 	<link rel="stylesheet" href="static/css/Google-Style-Login.css">
 	<link rel="stylesheet" href="static/css/login.css">
 	

@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Add Furniture</title>
+	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
     <script src="static/js/jquery.min.js"></script>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">

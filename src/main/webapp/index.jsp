@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>header</title>
+    <link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap4.min.css">
     <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="static/css/Navbar-Apple.css">
@@ -19,7 +20,7 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark" style="height:45px;">
-        <div class="container-fluid"><a class="navbar-brand" href="#">Furniture Store</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><a class="navbar-brand" href="shop/">Furniture Store</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav flex-grow-1 justify-content-between">
                     <!--li class="nav-item" role="presentation"><a class="nav-link active" href="#"><i class="fa fa-apple apple-logo"></i></a></li-->
