@@ -101,6 +101,16 @@ public class JDBC {
 		return list;
 	}
 	
+	public Furniture getFurniture(int fid) throws SQLException {
+		Furniture fur = null;
+		String qry = "SELECT * FROM `furniture` WHERE `id` = " + fid + ";";
+		Statement statement = (Statement) connection.createStatement();
+		ResultSet rs = statement.executeQuery(qry);
+		while(rs.next())
+			fur = new Furniture(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+		return fur;
+	}
+	
 	public boolean addFurniture(String name, String type, String room, int price) throws SQLException {
 		String qry = "INSERT INTO `furniture` (`name`, `type`, `room`, `price`) VALUES (?, ?, ?, ?);";
 		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);

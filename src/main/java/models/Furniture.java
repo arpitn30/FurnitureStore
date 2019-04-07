@@ -37,8 +37,15 @@ public class Furniture {
 	private String room;
 	private int price;
 	
+	public Furniture() {
+		this.name = "";
+		this.type = "";
+		this.room = "";
+		this.price = 0;
+	}
+	
 	/**
-	 * Default Constructor
+	 * Parameterized Constructor
 	 * @param id
 	 * @param name
 	 * @param type

@@ -86,6 +86,11 @@ public class Admin {
 		return Response.seeOther(new URI("../adminindex.jsp?status=true")).build();
 	}
 	
+	@GET
+	@Path("/editFurniture")
+	public Response EditFurniture(@QueryParam("fid") int fid) throws URISyntaxException {
+		return Response.seeOther(new URI("../editFurniture.jsp?fid=" + fid)).build();
+	}
 	
 	@POST
 	@Path("/editFurniture")
