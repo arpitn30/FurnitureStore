@@ -35,9 +35,11 @@
 	                </div>
 	            </div>
 	            <button class="btn btn-danger btn-block btn-lg btn-signin" type="submit">LOGIN </button>
-	        <p> </p>
 	        </form>
-	    </div> 
+	        <p> </p>
+	    </div>
+	    <div class="Register-card text-center"><strong><strong>Return to </strong> <a class="text-danger" href="shop/"><strong>HomePage</strong></a></strong>
+	    </div>
 	</div>
 </body>
 </html>

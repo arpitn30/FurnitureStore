@@ -25,16 +25,16 @@
                 <ul class="nav navbar-nav flex-grow-1 justify-content-between">
                     <!--li class="nav-item" role="presentation"><a class="nav-link active" href="#"><i class="fa fa-apple apple-logo"></i></a></li-->
                     <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#"><i class="fa fa-shopping-bag"></i> View Cart</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#"><i class="fa fa-history"></i> View All Orders</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#"><i class="fa fa-shopping-bag"></i>  View Cart</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#"><i class="fa fa-history"></i>  View All Orders</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#">iPhone</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Watch</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#">TV</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Change Password</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Support</a></li>
                     <% if(Session.getId() == -1) { %>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="shop/register"><i class="fa fa-user-circle-o"></i> Register</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="shop/login"><i class="fa fa-sign-in"></i> Login</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="shop/register"><i class="fa fa-user-circle-o"></i>  Register</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="shop/login"><i class="fa fa-sign-in"></i>  Login</a></li>
                     <% } else {%>
                     <li class="nav-item dropdown" role="presentation"><a class="nav-link active dropdown-toggle" data-toggle="dropdown" href=""><i class="fa fa-user-circle-o"></i> <%= Session.getName() %></a>
                     	<span class="caret"></span></a>
@@ -50,6 +50,12 @@
     <br><br><br>
     <div>
     	<table width="100%">
+    	<tr align="center">
+    		<th>Furniture Name</th>
+    		<th>Furniture Type</th>
+    		<th>Room</th>
+    		<th>Price</th>
+    	</tr>
     	<%
     		JDBC db = new JDBC();
 			db.setConnection();
@@ -57,11 +63,13 @@
 			db.closeConnection();
         	for(Furniture fur: data){
         %> 
-    		<tr>
+    		<tr align="center">
     			<td><%= fur.getName() %></td>
     			<td><%= fur.getType() %></td>
     			<td><%= fur.getRoom() %></td>
     			<td><%= fur.getPrice() %></td>
+    			<td><a class="btn btn-info" href="">Add to Cart</a></td>
+    			<td><a class="btn btn-success" href="">Buy Now</a></td>
     		</tr>    	
     	<% 
     		} 

@@ -50,6 +50,14 @@ public class Admin {
 	private static final String PASS = "superuser";
 
 	@GET
+	public Response homepage() throws URISyntaxException {
+		if(Session.getId() == 0)
+			return Response.seeOther(new URI("../adminindex.jsp")).build();
+		else 
+			return Response.seeOther(new URI("../adminlogin.jsp")).build();
+	}
+	
+	@GET
 	@Path("/login")
 	public Response login() throws URISyntaxException {
 		return Response.seeOther(new URI("../adminlogin.jsp")).build();
@@ -69,13 +77,13 @@ public class Admin {
 	
 	@GET
 	@Path("/addFurniture")
-	public Response AddFurniture() throws URISyntaxException {
+	public Response addFurniture() throws URISyntaxException {
 		return Response.seeOther(new URI("../addFurniture.jsp")).build(); 
 	}
 	
 	@POST
 	@Path("/addFurniture")
-	public Response AddFurniture(@FormParam("name") String name,@FormParam("type") String type, @FormParam("room") String room, @FormParam("price") int price) throws ClassNotFoundException, SQLException, URISyntaxException {
+	public Response addFurniture(@FormParam("name") String name,@FormParam("type") String type, @FormParam("room") String room, @FormParam("price") int price) throws ClassNotFoundException, SQLException, URISyntaxException {
 		JDBC db = new JDBC();
 		db.setConnection();
 		if(db.checkFurniture(name))
@@ -88,13 +96,13 @@ public class Admin {
 	
 	@GET
 	@Path("/editFurniture")
-	public Response EditFurniture(@QueryParam("fid") int fid) throws URISyntaxException {
+	public Response editFurniture(@QueryParam("fid") int fid) throws URISyntaxException {
 		return Response.seeOther(new URI("../editFurniture.jsp?fid=" + fid)).build();
 	}
 	
 	@POST
 	@Path("/editFurniture")
-	public Response EditFurniture(@FormParam("fid") int fid, @FormParam("name") String name,@FormParam("type") String type, @FormParam("room") String room, @FormParam("price") int price) throws ClassNotFoundException, SQLException, URISyntaxException {
+	public Response editFurniture(@FormParam("fid") int fid, @FormParam("name") String name,@FormParam("type") String type, @FormParam("room") String room, @FormParam("price") int price) throws ClassNotFoundException, SQLException, URISyntaxException {
 		JDBC db = new JDBC();
 		db.setConnection();
 		if(db.checkFurniture(name))
@@ -107,7 +115,7 @@ public class Admin {
 	
 	@GET
 	@Path("/deleteFurniture")
-	public Response DeleteFurniture(@QueryParam("fid") int fid) throws ClassNotFoundException, SQLException, URISyntaxException {
+	public Response deleteFurniture(@QueryParam("fid") int fid) throws ClassNotFoundException, SQLException, URISyntaxException {
 		JDBC db = new JDBC();
 		db.setConnection();
 		db.deleteFurniture(fid);
