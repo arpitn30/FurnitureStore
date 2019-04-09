@@ -36,6 +36,7 @@ public class Furniture {
 	private String type;
 	private String room;
 	private int price;
+	private String image;
 	
 	public Furniture() {
 		this.name = "";
@@ -58,6 +59,26 @@ public class Furniture {
 		this.type = type;
 		this.room = room;
 		this.price = price;
+		this.image = "static/img/furniture/default.png";
+	}
+	
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param type
+	 * @param room
+	 * @param price
+	 * @param image
+	 */
+	public Furniture(int id, String name, String type, String room, int price,
+			String image) {
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.room = room;
+		this.price = price;
+		this.image = image;
 	}
 
 	/*

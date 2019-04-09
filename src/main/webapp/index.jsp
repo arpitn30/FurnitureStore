@@ -1,81 +1,145 @@
-<%@page import="models.Furniture"%> 
-<%@page import="database.JDBC" %>
-<%@page import="session.Session" %>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>header</title>
-    <link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap4.min.css">
-    <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="static/css/Navbar-Apple.css">
-    <script src="static/js/jquery.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap4.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+
+	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
+    <link href="static/css/card.css" rel="stylesheet"/>
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="static/js/jquery-3.2.0.min.js"></script>
+
 </head>
-
 <body>
-    <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark" style="height:45px;">
-        <div class="container-fluid"><a class="navbar-brand" href="shop/">Furniture Store</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav flex-grow-1 justify-content-between">
-                    <!--li class="nav-item" role="presentation"><a class="nav-link active" href="#"><i class="fa fa-apple apple-logo"></i></a></li-->
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#"><i class="fa fa-shopping-bag"></i>  View Cart</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#"><i class="fa fa-history"></i>  View All Orders</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">iPhone</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Watch</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">TV</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Change Password</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Support</a></li>
-                    <% if(Session.getId() == -1) { %>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="shop/register"><i class="fa fa-user-circle-o"></i>  Register</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="shop/login"><i class="fa fa-sign-in"></i>  Login</a></li>
-                    <% } else {%>
-                    <li class="nav-item dropdown" role="presentation"><a class="nav-link active dropdown-toggle" data-toggle="dropdown" href=""><i class="fa fa-user-circle-o"></i> <%= Session.getName() %></a>
-                    	<span class="caret"></span></a>
-				        <ul class="dropdown-menu dropdown-dark dropdown-menu-right">
-				          <li class="dropdown-item"><a href="shop/logout">Logout</a></li>
-				        </ul>
-                    </li>
-                    <% } %>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <br><br><br>
-    <div>
-    	<table width="100%">
-    	<tr align="center">
-    		<th>Furniture Name</th>
-    		<th>Furniture Type</th>
-    		<th>Room</th>
-    		<th>Price</th>
-    	</tr>
-    	<%
-    		JDBC db = new JDBC();
-			db.setConnection();
-			ArrayList<Furniture> data = db.getFurniture();
-			db.closeConnection();
-        	for(Furniture fur: data){
-        %> 
-    		<tr align="center">
-    			<td><%= fur.getName() %></td>
-    			<td><%= fur.getType() %></td>
-    			<td><%= fur.getRoom() %></td>
-    			<td><%= fur.getPrice() %></td>
-    			<td><a class="btn btn-info" href="">Add to Cart</a></td>
-    			<td><a class="btn btn-success" href="">Buy Now</a></td>
-    		</tr>    	
-    	<% 
-    		} 
-    	%> 
-    	</table>
-    </div>
+<div class="wrapper">
+  <h1>Parallax Flipping Cards</h1>
+  <div class="cols">
+			<div class="col" ontouchstart="this.classList.toggle('hover');">
+				<div class="container">
+					<div class="front" style="background-image: url(https://unsplash.it/500/500/)">
+						<div class="inner">
+							<p>Diligord</p>
+              <span>Lorem ipsum</span>
+						</div>
+					</div>
+					<div class="back">
+						<div class="inner">
+						  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p><br>
+						  <a class="btn btn-primary">Edit</a><br>
+						  <a class="btn btn-primary">Delete</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col" ontouchstart="this.classList.toggle('hover');">
+				<div class="container">
+					<div class="front" style="url(https://unsplash.it/511/511/)">
+						<div class="inner">
+							<p>Rocogged</p>
+              <span>Lorem ipsum</span>
+						</div>
+					</div>
+					<div class="back">
+						<div class="inner">
+							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col" ontouchstart="this.classList.toggle('hover');">
+				<div class="container">
+					<div class="front" style="background-image: url(https://unsplash.it/502/502/)">
+						<div class="inner">
+							<p>Strizzes</p>
+              <span>Lorem ipsum</span>
+						</div>
+					</div>
+					<div class="back">
+						<div class="inner">
+							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col" ontouchstart="this.classList.toggle('hover');">
+				<div class="container">
+					<div class="front" style="background-image: url(https://unsplash.it/503/503/)">
+						<div class="inner">
+							<p>Clossyo</p>
+              <span>Lorem ipsum</span>
+						</div>
+					</div>
+					<div class="back">
+						<div class="inner">
+							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col" ontouchstart="this.classList.toggle('hover');">
+				<div class="container">
+					<div class="front" style="background-image: url(https://unsplash.it/504/504/">
+						<div class="inner">
+							<p>Rendann</p>
+              <span>Lorem ipsum</span>
+						</div>
+					</div>
+					<div class="back">
+						<div class="inner">
+							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col" ontouchstart="this.classList.toggle('hover');">
+				<div class="container">
+					<div class="front" style="background-image: url(https://unsplash.it/505/505/)">
+						<div class="inner">
+							<p>Reflupper</p>
+              <span>Lorem ipsum</span>
+						</div>
+					</div>
+					<div class="back">
+						<div class="inner">
+							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col" ontouchstart="this.classList.toggle('hover');">
+				<div class="container">
+					<div class="front" style="background-image: url(https://unsplash.it/506/506/)">
+						<div class="inner">
+							<p>Acirassi</p>
+              <span>Lorem ipsum</span>
+						</div>
+					</div>
+					<div class="back">
+						<div class="inner">
+							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col" ontouchstart="this.classList.toggle('hover');">
+				<div class="container">
+					<div class="front" style="background-image: url(https://unsplash.it/508/508/)">
+						<div class="inner">
+							<p>Sohanidd</p>
+              <span>Lorem ipsum</span>
+						</div>
+					</div>
+					<div class="back">
+						<div class="inner">
+							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+ </div>
 </body>
-
 </html>

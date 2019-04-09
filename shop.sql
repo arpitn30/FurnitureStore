@@ -17,12 +17,15 @@ CREATE TABLE `users` (
 
 INSERT INTO `shop`.`users` (`name`, `email`, `password`, `balance`, `secQues`) VALUES ('Arpit', 'arpit@altran.com', '456123', 10000, 'gagan');
 
+CREATE TABLE `furniture` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(200) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `room` varchar(45) NOT NULL,
+  `price` int(11) NOT NULL default '0',
+  `image` varchar(500) default NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
 
-CREATE  TABLE `shop`.`furniture` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `name` VARCHAR(200) NOT NULL ,
-  `type` VARCHAR(45) NOT NULL ,
-  `room` VARCHAR(45) NOT NULL ,
-  `price` INT NOT NULL DEFAULT 0 ,
-  PRIMARY KEY (`id`) ,
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) );
+
