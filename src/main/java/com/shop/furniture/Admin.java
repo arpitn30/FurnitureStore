@@ -68,7 +68,7 @@ public class Admin {
 	public Response login(@FormParam("email") String email, @FormParam("password") String pass) throws ClassNotFoundException, SQLException, URISyntaxException {
 		
 		if(USER.equals(email) && PASS.equals(pass)) {
-			Session.setId(0);;
+			Session.setId(0);
 			return Response.seeOther(new URI("../adminindex.jsp")).build();
 		}
 		
@@ -91,7 +91,7 @@ public class Admin {
 		
 		db.addFurniture(name, type, room, price);
 		
-		return Response.seeOther(new URI("../adminindex.jsp?status=true")).build();
+		return Response.seeOther(new URI("../adminindex.jsp")).build();
 	}
 	
 	@GET
@@ -105,8 +105,6 @@ public class Admin {
 	public Response editFurniture(@FormParam("fid") int fid, @FormParam("name") String name,@FormParam("type") String type, @FormParam("room") String room, @FormParam("price") int price) throws ClassNotFoundException, SQLException, URISyntaxException {
 		JDBC db = new JDBC();
 		db.setConnection();
-		if(db.checkFurniture(name))
-			return Response.seeOther(new URI("../register.jsp?status=exists")).build();
 		
 		db.editFurniture(fid, name, type, room, price);
 		

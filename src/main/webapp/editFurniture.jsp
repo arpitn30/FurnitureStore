@@ -31,8 +31,11 @@
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
 <div class="row register-form">
         <div class="col-md-8 col-md-offset-2">
-            <form class="form-horizontal custom-form" action="shop/admin/addFurniture" method="post">
+            <form class="form-horizontal custom-form" action="shop/admin/editFurniture" method="post">
                 <h1>Edit Furniture</h1>
+                <div>
+                <input type="hidden" name="fid" value=<%= fur.getId() %>>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-4 label-column">
                         <label class="control-label" for="name-input-field">Name </label>

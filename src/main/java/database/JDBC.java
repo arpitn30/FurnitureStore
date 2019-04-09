@@ -147,9 +147,9 @@ public class JDBC {
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 		if(rs.next())
-			return false;
-		else
 			return true;
+		else
+			return false;
 	}
 	
 	/**
