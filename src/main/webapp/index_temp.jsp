@@ -11,15 +11,15 @@
 <title>Insert title here</title>
 
 	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
-    <link href="static/css/card.css" rel="stylesheet"/>
-    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-	<script src="static/js/jquery-3.2.0.min.js"></script>
+	<link rel="stylesheet" href="static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/Navbar-Apple.css">
+    <link rel="stylesheet" href="static/css/card.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap4.min.css">
+    <script src="static/bootstrap/js/bootstrap4.min.js"></script>
+	<script src="static/js/jquery.min.js"></script>
 
 </head>
 <body>
-
-
     <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark" style="height:45px;">
         <div class="container-fluid"><a class="navbar-brand" href="shop/">Furniture Store</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -38,7 +38,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="shop/login"><i class="fa fa-sign-in"></i>  Login</a></li>
                     <% } else {%>
                     <li class="nav-item dropdown" role="presentation"><a class="nav-link active dropdown-toggle" data-toggle="dropdown" href=""><i class="fa fa-user-circle-o"></i> <%= Session.getName() %></a>
-                    	<span class="caret"></span></a>
+                    	<span class="caret"></span>
 				        <ul class="dropdown-menu dropdown-dark dropdown-menu-right">
 				          <li class="dropdown-item"><a href="shop/logout">Logout</a></li>
 				        </ul>
@@ -53,7 +53,6 @@
 
 
 <div class="wrapper">
-  <h1>Parallax Flipping Cards</h1>
   <div class="cols">
   
   		<%
@@ -65,17 +64,17 @@
         %> 
 			<div class="col" ontouchstart="this.classList.toggle('hover');">
 				<div class="container">
-					<div class="front" style="background-image: url(static/img/furniture/default.png)">
+					<div class="front" style="background-image: url(<%= fur.getImage() %>);">
 						<div class="inner">
-							<p>Diligord</p>
-              				<span>Lorem ipsum</span>
 						</div>
 					</div>
 					<div class="back">
 						<div class="inner">
-						  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p><br>
-						  <a class="btn btn-primary">Edit</a><br>
-						  <a class="btn btn-primary">Delete</a>
+						  <span><%= fur.getName() %></span>
+						  <p class="card-text">Price: Rs <%= fur.getPrice() %><br>Room: <%= fur.getRoom() %><br> Type: <%= fur.getType() %></p>
+               			  <input class="form-control" id="quantity<%= fur.getId() %>" type="number" placeholder="Quantity" value=1><br>
+               			  <a href="shop/user/addToCart?fid=<%= fur.getId() %>&quantity=" class="btn btn-info float-left" id="add<%= fur.getId() %>" onclick="setAddURL(<%= fur.getId() %>)">Add to Cart</a>
+               			  <a href="shop/user/buyNow?fid=<%= fur.getId() %>&quantity=" class="btn btn-success float-right" id="buy<%= fur.getId() %>" onclick="setBuyURL(<%= fur.getId() %>)"> Buy Now </a>
 						</div>
 					</div>
 				</div>

@@ -38,9 +38,8 @@
 	            </div>
 	            <button class="btn btn-danger btn-block btn-lg btn-signin" type="submit">LOGIN </button>
 	        </form><a href="#" class="forgot-password">Forgot your password?</a>
-	        <p> </p>
 	    </div>
-	    <div class="Register-card text-center"><strong><strong>Don't have an</strong> <strong>account?</strong> <a class="text-danger" href="shop/register"><strong>Register</strong> <strong>here</strong></a></strong>
+	    <div class="Register-card text-center"><strong>Don't have an account? <a class="text-danger" href="shop/register">Register here</a></strong>
 	    </div>    
 		</div>
 </body>

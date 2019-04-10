@@ -33,7 +33,7 @@ h1{
 
 .col{
   width: calc(25% - 2rem);
-  margin: 1rem;
+  margin: 0rem;
   cursor: pointer;
 }
 
@@ -60,7 +60,7 @@ h1{
 	height: auto;
 	border-radius: 10px;
 	color: #fff;
-	font-size: 1.5rem;
+	font-size: 1rem;
 }
 
 .back{
@@ -79,7 +79,7 @@ h1{
     height: 100%;
     content: '';
     display: block;
-    opacity: .6;
+    opacity: .1;
     background-color: #000;
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
@@ -143,6 +143,22 @@ h1{
           transform: rotateY(-180deg);
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
+}
+
+.back .inner span{
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.back .inner input{
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.back .inner a{
+  margin-bottom: 0.5rem;
+  position: relative;
 }
 
 .front .inner p{
