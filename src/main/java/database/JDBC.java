@@ -95,7 +95,7 @@ public class JDBC {
 		ResultSet rs = statement.executeQuery(qry);
 		
 		while(rs.next()) {
-			Furniture f = new Furniture(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+			Furniture f = new Furniture(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6));
 			list.add(f);
 		}
 		return list;
@@ -107,7 +107,7 @@ public class JDBC {
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 		while(rs.next())
-			fur = new Furniture(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+			fur = new Furniture(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6));
 		return fur;
 	}
 	
