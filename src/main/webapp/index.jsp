@@ -36,7 +36,7 @@
             <div class="card-body">
                <h5 class="card-title border-bottom pb-3"><%= fur.getName() %></h5>
                <p class="card-text">Price: Rs <%= fur.getPrice() %><br>Room: <%= fur.getRoom() %><br> Type: <%= fur.getType() %></p>
-               <a href="shop/user/addToCart" class="btn btn-info float-left">Add to Cart</a>
+               <a href="shop/user/addToCart?fid=<%= fur.getId() %>&quantity=1" class="btn btn-info float-left" >Add to Cart</a>
                <a href="shop/user/buyNow" class="btn btn-success float-right"> Buy Now </a>
             </div>
          </div>
