@@ -22,8 +22,10 @@
 <body>
 <div class="container">
    <div class="row">
-      <% for(Order order: Local.getCart()){ 
-      
+      <% 	JDBC db = new JDBC();
+			db.setConnection();
+      		for(Order order: Local.getCart()){ 
+      			Furniture fur = db.getFurniture(order.getFid());
       %>     
       <div class="col-md-4">
          <div class="card">
@@ -31,12 +33,13 @@
             <div class="card-body">
                <h5 class="card-title border-bottom pb-3"><%= fur.getName() %></h5>
                <p class="card-text">Price: Rs <%= fur.getPrice() %><br>Room: <%= fur.getRoom() %><br> Type: <%= fur.getType() %></p>
-               <a href="#" class="btn btn-info float-left">Add to Cart</a>
-               <a href="#" class="btn btn-success float-right"> Buy Now </a>
+               <a href="#" class="btn btn-info float-left">Delete</a>
             </div>
          </div>
       </div>
-      <% } %>    
+      <% }
+      	 db.closeConnection();
+      %>    
    </div>
 
 </div>
