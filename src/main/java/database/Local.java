@@ -26,6 +26,7 @@ Aricent Altran Group
 package database;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import models.Order;
 
@@ -55,7 +56,20 @@ public class Local {
 	}
 	
 	public static void deleteFromCart(int fid) {
-		
+		Iterator<Order> itr = cart.iterator();
+		while(itr.hasNext()) {
+			if(itr.next().getFid()==fid)
+				itr.remove();
+		}
+	}
+	
+	public static void editCart(int fid, int quantity) {
+		Iterator<Order> itr = cart.iterator();
+		while(itr.hasNext()) {
+			Order item = itr.next();
+			if(item.getFid()==fid)
+				item.setQuantity(quantity);
+		}		
 	}
 	
 	public static void clearCart() {
