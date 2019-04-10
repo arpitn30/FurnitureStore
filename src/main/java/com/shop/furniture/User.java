@@ -53,7 +53,7 @@ public class User {
 		db.setConnection();
 		long totalAmount = db.getFurniture(fid).getPrice() * quantity;
 		db.closeConnection();
-		Local.addToCart(new Order(fid, Session.getId(), quantity, totalAmount));
+		Local.addToCart(fid, Session.getId(), quantity, totalAmount);
 		return Response.seeOther(new URI("../index.jsp")).build();
 	}
 	

@@ -51,23 +51,39 @@ public class Local {
 		Local.cart = cart;
 	}
 	
-	public static void addToCart(Order order) {
-		Local.cart.add(order);
-	}
-	
-	public static void deleteFromCart(int fid) {
+	/**
+	 * Add an item to the cart and if the item already exists in the cart 
+	 * then update the quantity of that item in the cart
+	 * @param furniture_id
+	 * @param user_id
+	 * @param quantity
+	 * @param totalAmount
+	 */
+	public static void addToCart(int furniture_id, int user_id, int quantity, long totalAmount) {
 		Iterator<Order> itr = cart.iterator();
 		while(itr.hasNext()) {
-			if(itr.next().getFid()==fid)
+			Order item = itr.next();
+			if(item.getFid()==furniture_id) {
+				item.setQuantity(item.getQuantity() + quantity);
+				return;
+			}
+		}
+		Local.cart.add(new Order(furniture_id, user_id, quantity, totalAmount));
+	}
+	
+	public static void deleteFromCart(int furniture_id) {
+		Iterator<Order> itr = cart.iterator();
+		while(itr.hasNext()) {
+			if(itr.next().getFid()==furniture_id)
 				itr.remove();
 		}
 	}
 	
-	public static void editCart(int fid, int quantity) {
+	public static void editCart(int furniture_id, int quantity) {
 		Iterator<Order> itr = cart.iterator();
 		while(itr.hasNext()) {
 			Order item = itr.next();
-			if(item.getFid()==fid)
+			if(item.getFid()==furniture_id)
 				item.setQuantity(quantity);
 		}		
 	}
