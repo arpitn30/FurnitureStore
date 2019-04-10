@@ -1,6 +1,5 @@
 <%@page import="models.Furniture"%> 
 <%@page import="database.JDBC" %>
-<%@page import="session.Session" %>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
