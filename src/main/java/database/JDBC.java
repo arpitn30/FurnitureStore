@@ -30,12 +30,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 import models.Furniture;
+import models.Order;
 import models.User;
 
 /**
@@ -150,6 +152,45 @@ public class JDBC {
 			return true;
 		else
 			return false;
+	}
+	/**
+	 * 
+	 */
+	public ArrayList<Order> getOrders() throws SQLException{ 
+		ArrayList<Order> pastOrders = new ArrayList<Order>();
+		String qry = "SELECT * FROM `orders`;";
+		Statement statement = (Statement) connection.createStatement();
+		ResultSet rs = statement.executeQuery(qry);
+		
+		while(rs.next()) {
+			Order o = new Order(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getTimestamp(5), rs.getLong(6));
+			pastOrders.add(o);
+		}
+		return pastOrders;
+	}
+	
+	/**
+	 * 
+	 * @param orderId
+	 * @param furnitureId
+	 * @param userId
+	 * @param quantity
+	 * @param orderDate
+	 * @param totalAmount
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean addOrder(int orderId,int furnitureId,int userId,int quantity, Date orderDate,long totalAmount) throws SQLException {
+		String qry = "INSERT INTO `orders` (`order_id`, `furniture_id`, `user_id`, `quantity` , `orderDate`, `totalAmount`) VALUES (?, ?, ?, ?, ?, ?);";
+		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
+		
+		st.setInt(1, orderId);
+		st.setInt(2, furnitureId);
+		st.setInt(3, userId);
+		st.setInt(4, quantity);
+		st.setDate(5, (java.sql.Date) orderDate);
+		st.setLong(6, totalAmount);
+		return st.execute();
 	}
 	
 	/**
