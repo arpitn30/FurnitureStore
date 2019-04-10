@@ -16,16 +16,32 @@
     <script src="static/bootstrap/js/bootstrap4.min.js"></script>
 	<script src="static/js/jquery-3.2.0.min.js"></script>
 
+	<script type="text/javascript">
+		function setAddURL(id){
+			var add = document.getElementById('add' + id);
+			add.href = add.getAttribute("href") + getQuantity(id);
+			return;
+		}
+		
+		function setBuyURL(id){
+			var buy = document.getElementById('buy' + id);
+			buy.href = buy.getAttribute("href") + getQuantity(id);
+			return;
+		}
+		
+		function getQuantity(id){
+			return document.getElementById("quantity" + id).value;
+		}
+	</script>
+
 </head>
 <body>
 
-<%
+		<%
     		JDBC db = new JDBC();
 			db.setConnection();
 			ArrayList<Furniture> data = db.getFurniture();
 			db.closeConnection();
-			
-        		
         %> 
 <div class="container">
    <div class="row">
@@ -36,8 +52,9 @@
             <div class="card-body">
                <h5 class="card-title border-bottom pb-3"><%= fur.getName() %></h5>
                <p class="card-text">Price: Rs <%= fur.getPrice() %><br>Room: <%= fur.getRoom() %><br> Type: <%= fur.getType() %></p>
-               <a href="shop/user/addToCart?fid=<%= fur.getId() %>&quantity=1" class="btn btn-info float-left" >Add to Cart</a>
-               <a href="shop/user/buyNow" class="btn btn-success float-right"> Buy Now </a>
+               <input class="form-control" id="quantity<%= fur.getId() %>" type="number" placeholder="Quantity" value=1><br>
+               <a href="shop/user/addToCart?fid=<%= fur.getId() %>&quantity=" class="btn btn-info float-left" id="add<%= fur.getId() %>" onclick="setAddURL(<%= fur.getId() %>)">Add to Cart</a>
+               <a href="shop/user/buyNow?fid=<%= fur.getId() %>&quantity=" class="btn btn-success float-right" id="buy<%= fur.getId() %>" onclick="setBuyURL(<%= fur.getId() %>)"> Buy Now </a>
             </div>
          </div>
       </div>

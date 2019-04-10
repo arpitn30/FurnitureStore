@@ -18,6 +18,18 @@
     <script src="static/bootstrap/js/bootstrap4.min.js"></script>
 	<script src="static/js/jquery-3.2.0.min.js"></script>
 
+	<script type="text/javascript">
+		function setEditURL(id){
+			var edit = document.getElementById('edit' + id);
+			edit.href = edit.getAttribute("href") + getQuantity(id);
+			return;
+		}
+		
+		function getQuantity(id){
+			return document.getElementById("quantity" + id).value;
+		}
+	</script>
+
 </head>
 <body>
 <div class="container">
@@ -33,7 +45,9 @@
             <div class="card-body">
                <h5 class="card-title border-bottom pb-3"><%= fur.getName() %></h5>
                <p class="card-text">Price: Rs <%= fur.getPrice() %><br>Room: <%= fur.getRoom() %><br> Type: <%= fur.getType() %></p>
-               <a href="#" class="btn btn-info float-left">Delete</a>
+               <input class="form-control" id="quantity<%= fur.getId() %>" type="number" placeholder="Quantity" value=<%= order.getQuantity() %>><br>
+               <a href="shop/user/editCart?fid=<%= order.getFid() %>&quantity=" class="btn btn-info float-left" id="edit<%= fur.getId() %>" onclick="setEditURL(<%= fur.getId() %>)">Edit</a>
+               <a href="shop/user/deleteFromCart?fid=<%= order.getFid() %>" class="btn btn-danger float-right">Delete</a>
             </div>
          </div>
       </div>
