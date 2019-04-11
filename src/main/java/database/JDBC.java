@@ -105,7 +105,7 @@ public class JDBC {
 	
 	public Furniture getFurniture(int fid) throws SQLException {
 		Furniture fur = null;
-		String qry = "SELECT * FROM `furniture` WHERE `id` = " + fid + ";";
+		String qry = "SELECT * FROM `furniture` WHERE `furniture_id` = " + fid + ";";
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 		while(rs.next())
@@ -126,14 +126,14 @@ public class JDBC {
 	}
 	
 	public boolean deleteFurniture(int fid) throws SQLException {
-		String qry = "DELETE FROM `furniture` WHERE `id`=?";
+		String qry = "DELETE FROM `furniture` WHERE `furniture_id`=?";
 		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
 		st.setInt(1, fid);
 		return st.execute();
 	}
 	
 	public boolean editFurniture(int fid, String name, String type, String room, int price) throws SQLException {
-		String qry = "UPDATE `furniture` SET `name`=?, `type`=?, `room`=?, `price`=? WHERE `id`=?;";
+		String qry = "UPDATE `furniture` SET `name`=?, `type`=?, `room`=?, `price`=? WHERE `furniture_id`=?;";
 		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
 		
 		st.setString(1, name);
