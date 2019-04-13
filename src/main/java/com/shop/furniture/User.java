@@ -36,7 +36,6 @@ import javax.ws.rs.core.Response;
 
 import database.JDBC;
 import database.Local;
-import models.Order;
 import session.Session;
 
 /**
@@ -46,6 +45,17 @@ import session.Session;
 @Path("/user")
 public class User {
 
+	@GET
+	public Response home() throws URISyntaxException {
+		return Response.seeOther(new URI("/")).build();
+	}
+	
+	@GET
+	@Path("viewcart")
+	public Response viewcart() throws URISyntaxException {
+		return Response.seeOther(new URI("../viewcart.jsp")).build();
+	}
+	
 	@GET
 	@Path("addToCart")
 	public Response addToCart(@QueryParam("fid") int fid, @QueryParam("quantity") int quantity) throws SQLException, ClassNotFoundException, URISyntaxException {
