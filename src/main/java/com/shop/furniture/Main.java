@@ -33,6 +33,7 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import database.JDBC;
@@ -44,11 +45,17 @@ import session.Session;
  *
  */
 @Path("/")
-public class Login {
+public class Main {
 
 	@GET
 	public Response homepage() throws URISyntaxException {
 			return Response.seeOther(new URI("../index.jsp")).build();
+	}
+	
+	@GET
+	@Path("/home")
+	public Response homepage(@QueryParam("status") String status) throws URISyntaxException {
+		return Response.seeOther(new URI("../index.jsp?status=" + status)).build();
 	}
 	
 	/**
@@ -107,4 +114,28 @@ public class Login {
 		return Response.seeOther(new URI("../index.jsp")).build();
 	}
 	
+	@GET
+	@Path("/forgotPass")
+	public Response forgotPassword() throws URISyntaxException {
+		return Response.seeOther(new URI("../forgotpass.jsp")).build();
+	}
+	
+	@POST
+	@Path("/forgotPass")
+	public Response forgotPassword(@FormParam("email") String email, @FormParam("secQues") String secQues, @FormParam("password") String pass, @FormParam("password2") String pass2) throws URISyntaxException, ClassNotFoundException, SQLException {
+		if(!pass.equals(pass2))
+			return Response.seeOther(new URI("../forgotpass.jsp?status=mismatch")).build();
+		
+		JDBC db = new JDBC();
+		db.setConnection();
+		User user = db.getUser(email);
+		if(user == null)
+			return Response.seeOther(new URI("../forgotpass.jsp?status=notexists")).build();
+		
+		if(!user.getSecQues().equalsIgnoreCase(secQues))
+			return Response.seeOther(new URI("../forgotpass.jsp?status=incorrect")).build();
+		
+		db.updatePassword(user.getId(), pass);
+		return Response.seeOther(new URI("../login.jsp?status=password")).build();
+	}
 }
