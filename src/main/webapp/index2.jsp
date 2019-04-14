@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="static/css/Navbar-Apple.css">
 	<link rel="stylesheet" href="static/css/card.css">
 	<link rel="stylesheet" href="static/css/index.css">
+	<script src="static/js/custom.js"></script>
 	
 	<script type="text/javascript">
 		function setAddURL(id){
@@ -37,15 +38,18 @@
 			return document.getElementById("quantity" + id).value;
 		}
 	</script>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
-		<script>alert("Item Added to Cart");</script>
-	<% } %>
 
 </head>
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
-
+<div class="container">
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
+		<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Success!</strong> Item Added to Cart</div>
+	<% } %>
+	
 <div class="wrapper">
   <div class="cols">
   
@@ -75,6 +79,7 @@
 			</div>
 			<% } %>
 		</div>
+ </div>
  </div>
 </body>
 </html>

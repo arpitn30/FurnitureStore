@@ -13,18 +13,25 @@
     <script src="static/js/jquery.min.js"></script>
     
     <link rel="stylesheet" href="static/css/form.css">
-    
-    <% if(request.getParameter("status") != null && request.getParameter("status").equals("exists")) { %>
-		<script>alert("This email is already registered");</script>
-	<% } %>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("mismatch")) { %>
-		<script>alert("The passwords don't match");</script>
-	<% } %>
+	<script src="static/js/custom.js"></script>
     
 </head>
 
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
+<div class="container">
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("mismatch")) { %>
+		<div class="alert alert-warning" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Failed!</strong> The two passwords do not match</div>
+	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("exists")) { %>
+		<div class="alert alert-warning" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Failed!</strong> This email is already registered</div>
+	<% } %>
+	
 	<div class="row register-form">
         <div class="col-md-8 offset-md-2">
             <form class="custom-form" action="shop/register" method="post">
@@ -58,6 +65,7 @@
              </form>
         </div>
     </div>
+</div>
 </body>
 
 </html>

@@ -14,23 +14,30 @@
 	
 	<link rel="stylesheet" href="static/css/Google-Style-Login.css">
 	<link rel="stylesheet" href="static/css/login.css">
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("false")) { %>
-		<script>alert("Incorrect Login/Password");</script>
-	<% } %>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("true")) { %>
-		<script>alert("Registration Successful");</script>
-	<% } %>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("password")) { %>
-		<script>alert("Password Successfully Changed");</script>
-	<% } %>
+	<script src="static/js/custom.js"></script>
 
 </head>
 <body>
 
 	<div class="container">
+
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("false")) { %>
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Error!</strong> Incorrect Login/Password</div>
+	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("true")) { %>
+		<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Success!</strong> Registration Successful</div>
+	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("password")) { %>
+		<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Success!</strong> Password Successfully Changed</div>
+	<% } %>
 
 	    <div class="login-card">
 	        <form class="form-signin" action="shop/login" method="post">

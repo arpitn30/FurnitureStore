@@ -18,15 +18,20 @@
     <script src="static/js/jquery.min.js"></script>
     
     <link rel="stylesheet" href="static/css/Navbar-Apple.css">
-    
-    <% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
-		<script>alert("Furniture Added to the Database");</script>
-	<% } %>
+    <script src="static/js/custom.js"></script>
+
 </head>
 
 <body>
 <jsp:include page="adminnav.jsp"></jsp:include>
     <div class="container">
+    
+    <% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
+		<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Success!</strong> Furniture Added to the Database</div>
+	<% } %>
+    
     	<table class="table table-hover">
 		<thead class="thead-dark">
 			<tr align="center">

@@ -14,14 +14,18 @@
     
 	<link rel="stylesheet" href="static/css/Google-Style-Login.css">
 	<link rel="stylesheet" href="static/css/login.css">
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("false")) { %>
-		<script>alert("Incorrect Login/Password");</script>
-	<% } %>
+	<script src="static/js/custom.js"></script>
+
 </head>
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
 
 	<div class="container">
+
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("false")) { %>
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Error!</strong> Incorrect Login/Password</div>
+	<% } %>
 
 	    <div class="login-card">
 	        <form class="form-signin" action="shop/admin/login" method="post">

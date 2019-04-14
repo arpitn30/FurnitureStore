@@ -18,6 +18,7 @@
 	
 	<link rel="stylesheet" href="static/css/Navbar-Apple.css">
 	<link href="static/css/index.css" rel="stylesheet"/>
+	<script src="static/js/custom.js"></script>
 
 	<script type="text/javascript">
 		function setEditURL(id){
@@ -30,20 +31,25 @@
 			return document.getElementById("quantity" + id).value;
 		}
 	</script>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("deleted")) { %>
-		<script>alert("Item Deleted from the Cart");</script>
-	<% } %>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("lowbalance")) { %>
-		<script>alert("Your account balance is insufficient!");</script>
-	<% } %>
 
 </head>
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
 
 <div class="container">
+
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("deleted")) { %>
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Success!</strong> Item Deleted from the Cart</div>
+	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("lowbalance")) { %>
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Error!</strong> Your account balance is insufficient!</div>
+	<% } %>
+
    <div class="row">
       <% 	JDBC db = new JDBC();
 			db.setConnection();

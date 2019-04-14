@@ -17,6 +17,7 @@
 	
 	<link rel="stylesheet" href="static/css/Navbar-Apple.css">
 	<link href="static/css/index.css" rel="stylesheet"/>
+	<script src="static/js/custom.js"></script>
 
 	<script type="text/javascript">
 		function setAddURL(id){
@@ -36,14 +37,9 @@
 		}
 	</script>
 
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
-		<script>alert("Item Added to Cart");</script>
-	<% } %>
-
 </head>
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
-
 	<%
     	JDBC db = new JDBC();
 		db.setConnection();
@@ -51,6 +47,13 @@
 		db.closeConnection();
 	%> 
 <div class="container">
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
+		<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Success!</strong> Item Added to Cart</div>
+	<% } %>
+
    <div class="row">
       <% for(Furniture fur: data){ %>     
       <div class="col-md-4">

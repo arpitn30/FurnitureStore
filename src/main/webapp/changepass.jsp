@@ -14,23 +14,31 @@
     
     <link rel="stylesheet" href="static/css/Navbar-Apple.css">
     <link rel="stylesheet" href="static/css/Login-Form-Dark.css">
-
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("mismatch")) { %>
-		<script>alert("The passwords don't match");</script>
-	<% } %>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("incorrect")) { %>
-		<script>alert("The Old Password entered is Incorrect");</script>
-	<% } %>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("true")) { %>
-		<script>alert("Changed Password Successfully");</script>
-	<% } %>
+    <script src="static/js/custom.js"></script>
 
 </head>
 <body class="login-dark">
 <jsp:include page="navbar.jsp"></jsp:include>
-	<div>
+	<div class="container">
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("mismatch")) { %>
+		<div class="alert alert-warning" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Failed!</strong> The two passwords do not match</div>
+	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("incorrect")) { %>
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Error!</strong> The Old Password entered is Incorrect!</div>
+	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("true")) { %>
+		<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Success!</strong> Changed Password Successfully</div>
+	<% } %>
+	
         <form action="shop/user/changePass" method="post">
             <h2 class="sr-only">Change Password</h2>
             <div class="form-group"><input class="form-control" type="password" name="oldpass" required="" placeholder="Old Password"></div>

@@ -13,22 +13,31 @@
     <script src="static/js/jquery.min.js"></script>
     
     <link rel="stylesheet" href="static/css/form.css">
-    
-    <% if(request.getParameter("status") != null && request.getParameter("status").equals("notexists")) { %>
-		<script>alert("This email is not registered");</script>
-	<% } %>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("mismatch")) { %>
-		<script>alert("The passwords don't match");</script>
-	<% } %>
-	
-	<% if(request.getParameter("status") != null && request.getParameter("status").equals("incorrect")) { %>
-		<script>alert("The Old Password entered is Incorrect");</script>
-	<% } %>
+	<script src="static/js/custom.js"></script>
     
 </head>
 
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
+<div class="container">
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("notexists")) { %>
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Error!</strong> This email is not registered!</div>
+	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("mismatch")) { %>
+		<div class="alert alert-warning" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Failed!</strong> The two passwords do not match</div>
+	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("incorrect")) { %>
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Error!</strong> The Old Password entered is Incorrect!</div>
+	<% } %>
+	
 	<div class="row register-form">
         <div class="col-md-8 offset-md-2">
             <form class="custom-form" action="shop/forgotPass" method="post">
@@ -57,6 +66,7 @@
              </form>
         </div>
     </div>
+</div>
 </body>
 
 </html>

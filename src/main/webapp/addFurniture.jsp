@@ -14,15 +14,19 @@
 
 	<link rel="stylesheet" href="static/css/Navbar-Apple.css">
 	<link rel="stylesheet" href="static/css/form.css">
-    
-    <% if(request.getParameter("status") != null && request.getParameter("status").equals("exists")) { %>
-		<script>alert("This Product already exists");</script>
-	<% } %>
-	
+	<script src="static/js/custom.js"></script>
 	
 </head>
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
 <jsp:include page="adminnav.jsp"></jsp:include>
+	<div class="container">
+	
+	 <% if(request.getParameter("status") != null && request.getParameter("status").equals("exists")) { %>
+		<div class="alert alert-warning" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Failed!</strong> This Furniture already exists in the Database</div>
+	<% } %>
+	
 	<div class="row register-form">
         <div class="col-md-6 offset-md-3">
             <form class="custom-form" action="shop/admin/addFurniture" method="post">
@@ -46,6 +50,7 @@
                 <button class="btn btn-primary rounded shadow submit-button" type="submit">Add Furniture</button>
             </form>
         </div>
+    </div>
     </div>
 </body>
 </html>
