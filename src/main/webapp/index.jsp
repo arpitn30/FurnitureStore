@@ -15,8 +15,8 @@
     <script src="static/bootstrap/js/bootstrap4.min.js"></script>
 	<script src="static/js/jquery-3.2.0.min.js"></script>
 	
-	<link href="static/css/index.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="static/css/Navbar-Apple.css">
+	<link href="static/css/index.css" rel="stylesheet"/>
 
 	<script type="text/javascript">
 		function setAddURL(id){

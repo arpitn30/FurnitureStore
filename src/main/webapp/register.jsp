@@ -7,8 +7,8 @@
 	<title>Register</title>
 	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
     <script src="static/js/jquery.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <script src="static/bootstrap/js/bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap4.min.css">
     <link rel="stylesheet" href="static/css/form.css">
     
     <% if(request.getParameter("status") != null && request.getParameter("status").equals("exists")) { %>
@@ -22,62 +22,37 @@
 </head>
 
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
-    <div class="row register-form">
-        <div class="col-md-8 col-md-offset-2">
-            <form class="form-horizontal custom-form" action="shop/register" method="post">
+	<div class="row register-form">
+        <div class="col-md-8 offset-md-2">
+            <form class="custom-form" action="shop/register" method="post">
                 <h1>Register Form</h1>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="name-input-field">Name </label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text" name="name" placeholder="Name" required="">
-                    </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Name </label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="text" name="name" required="" placeholder="Name"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="email-input-field">Email </label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                        <input class="form-control" type="email" name="email" placeholder="Email" required="">
-                    </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="email-input-field">Email </label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="email" name="email" required="" placeholder="Email" inputmode="email"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="pawssword-input-field">Password </label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                        <input class="form-control" type="password" name="password" placeholder="Password" required="">
-                    </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="password-input-field">Password </label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="password" name="password" required="" placeholder="Password"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="repeat-pawssword-input-field">Repeat Password </label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                        <input class="form-control" type="password" name="password2" placeholder="Retype Password" required="">
-                    </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="password2-input-field">Repeat Password </label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="password" name="password2" required="" placeholder="Retype Password"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label">Security Question</label>
-                    </div>
-                    <div class="col-sm-6 input-column"><span>What is the name of your best friend?</span></div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="password2-input-field">Security Question</label></div>
+                    <div class="col-sm-6 input-column"><label class="col-form-label">What is the name of your best friend?</label></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="repeat-pawssword-input-field">Answer </label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text" name="secQues" placeholder="Answer to the security question" required="">
-                    </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="secQues-input-field">Answer</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="text" name="secQues" required="" placeholder="Answer to the security question"></div>
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" required="">I've read and accept the terms and conditions</label>
-                </div>
-                <button class="btn btn-primary submit-button" type="submit">Register </button>
-            </form>
+                <div class="form-check"><input class="form-check-input" type="checkbox" required="" id="formCheck-2"><label class="form-check-label" for="formCheck-2">I've read and accept the terms and conditions</label></div>
+                <button class="btn rounded shadow submit-button" type="submit">Register</button>
+             </form>
         </div>
     </div>
 </body>
