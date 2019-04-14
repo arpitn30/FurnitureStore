@@ -35,7 +35,7 @@
       <% 	JDBC db = new JDBC();
 			db.setConnection();
       		for(Order order: Local.getCart()){ 
-      			Furniture fur = db.getFurniture(order.getFid());
+      			Furniture fur = db.getFurniture(order.getFurniture_id());
       %>     
       <div class="col-md-4">
          <div class="card">
@@ -44,8 +44,8 @@
                <h5 class="card-title border-bottom pb-3"><%= fur.getName() %></h5>
                <p class="card-text">Price: Rs <%= fur.getPrice() %><br>Room: <%= fur.getRoom() %><br> Type: <%= fur.getType() %></p>
                <input class="form-control" id="quantity<%= fur.getId() %>" type="number" placeholder="Quantity" value=<%= order.getQuantity() %>><br>
-               <a href="shop/user/editCart?fid=<%= order.getFid() %>&quantity=" class="btn btn-info float-left" id="edit<%= fur.getId() %>" onclick="setEditURL(<%= fur.getId() %>)">Edit</a>
-               <a href="shop/user/deleteFromCart?fid=<%= order.getFid() %>" class="btn btn-danger float-right">Delete</a>
+               <a href="shop/user/editCart?fid=<%= fur.getId() %>&quantity=" class="btn btn-info float-left" id="edit<%= fur.getId() %>" onclick="setEditURL(<%= fur.getId() %>)">Edit</a>
+               <a href="shop/user/deleteFromCart?fid=<%= fur.getId() %>" class="btn btn-danger float-right">Delete</a>
             </div>
          </div>
       </div>

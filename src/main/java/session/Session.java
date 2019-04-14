@@ -45,7 +45,6 @@ public class Session {
 		Session.id = id;
 	}
 	
-	
 	/**
 	 * @return the name
 	 */
@@ -57,6 +56,13 @@ public class Session {
 	 */
 	public static void setName(String name) {
 		Session.name = name;
+	}
+	
+	public static boolean isSet() {
+		if(Session.id == -1)
+			return false;
+		else
+			return true;
 	}
 	
 	public static void reset() {
