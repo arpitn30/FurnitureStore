@@ -73,20 +73,44 @@ public class JDBC {
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 		while(rs.next())
-			user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5), rs.getString(6));
+			user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 		return user;
 	}
 	
-	public boolean addUser(String name, String email, String password, String secQues) throws SQLException {
-		String qry = "INSERT INTO users (name, email, password, balance, secQues) VALUES (?, ?, ?, ?, ?);";
+	public void addUser(String name, String email, String password, String secQues) throws SQLException {
+		String qry = "INSERT INTO users (name, email, password, secQues) VALUES (?, ?, ?, ?);";
 		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
-		
 		st.setString(1, name);
 		st.setString(2, email);
 		st.setString(3, password);
-		st.setLong(4, 0);
-		st.setString(5, secQues);
+		st.setString(4, secQues);
+		st.execute();
 		
+		int user_id = this.getUser(email).getId();
+		qry = "INSERT INTO `wallet` (`user_id`, `balance`) VALUES (?, ?);";
+		st = (PreparedStatement) connection.prepareStatement(qry);
+		st.setInt(1, user_id);
+		st.setLong(2, 0);
+		st.execute();
+	}
+	
+	public long getBalance(int user_id) throws SQLException {
+		long balance = 0;
+		String qry = "SELECT `balance` FROM `wallet` where `user_id` = " + user_id + ";";
+		Statement statement = (Statement) connection.createStatement();
+		ResultSet rs = statement.executeQuery(qry);
+		while(rs.next())
+			balance = rs.getLong("balance");
+		return balance;
+	}
+	
+	public boolean addBalance(int user_id, long balance) throws SQLException {
+		balance += this.getBalance(user_id);
+		
+		String qry = "UPDATE `wallet` SET `balance`=? WHERE `user_id`=?;";
+		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
+		st.setLong(1, balance);
+		st.setInt(2, user_id);
 		return st.execute();
 	}
 	

@@ -35,7 +35,6 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
-	private long balance;
 	private String secQues;
 	
 	/**
@@ -43,29 +42,25 @@ public class User {
 	 * @param name
 	 * @param email
 	 * @param password
-	 * @param balance
 	 * @param secQues
 	 */
-	public User(int id, String name, String email, String password, long balance, String secQues) {
+	public User(int id, String name, String email, String password, String secQues) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.balance = balance;
 		this.secQues = secQues;
 	}
 	/**
 	 * @param name
 	 * @param email
 	 * @param password
-	 * @param balance
 	 * @param secQues
 	 */
-	public User(String name, String email, String password, long balance, String secQues) {
+	public User(String name, String email, String password, String secQues) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.balance = balance;
 		this.secQues = secQues;
 	}
 	
@@ -119,18 +114,6 @@ public class User {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	/**
-	 * @return the balance
-	 */
-	public long getBalance() {
-		return balance;
-	}
-	/**
-	 * @param balance the balance to set
-	 */
-	public void setBalance(long balance) {
-		this.balance = balance;
 	}
 	/**
 	 * @return the secQues
