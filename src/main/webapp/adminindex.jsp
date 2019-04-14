@@ -7,9 +7,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>header</title>
+    <title>Admin Home</title>
     
     <link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
     <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
@@ -18,7 +18,6 @@
     <script src="static/js/jquery.min.js"></script>
     
     <link rel="stylesheet" href="static/css/Navbar-Apple.css">
-    
 </head>
 
 <body>

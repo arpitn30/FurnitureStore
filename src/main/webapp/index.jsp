@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Furniture</title>
+<title>Home</title>
 
 	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
 	<link rel="stylesheet" href="static/fonts/font-awesome.min.css">

@@ -1,31 +1,57 @@
 CREATE SCHEMA `shop`;
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `balance` bigint(20) unsigned zerofill NOT NULL DEFAULT 0,
   `secQues` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`user_id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-);
+  UNIQUE KEY `id_UNIQUE` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+INSERT INTO `users` VALUES (1,'Arpit','arpit@altran.com','456123','gagan'),
+(2,'Gagan','gagan@altran.com','789456','gagan');
 
 
+CREATE TABLE `wallet` (
+  `user_id` int(11) NOT NULL,
+  `balance` bigint(20) unsigned zerofill NOT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`),
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `wallet` VALUES (1,10000000),(2,100000000);
 
-INSERT INTO `shop`.`users` (`name`, `email`, `password`, `balance`, `secQues`) VALUES ('Arpit', 'arpit@altran.com', '456123', 10000, 'gagan');
 
 CREATE TABLE `furniture` (
-  `id` int(11) NOT NULL auto_increment,
+  `furniture_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `type` varchar(45) NOT NULL,
   `room` varchar(45) NOT NULL,
-  `price` int(11) NOT NULL default '0',
-  `image` varchar(500) default NULL,
-  PRIMARY KEY  (`id`),
+  `price` int(11) NOT NULL DEFAULT '0',
+  `image` varchar(500) DEFAULT 'default',
+  PRIMARY KEY (`furniture_id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+INSERT INTO `furniture` VALUES (1,'SportsCar Bed','Bed','Kids',12000,'img2'),
+(2,'Mahagony Table','Table','Living',40000,'img1'),
+(3,'Gaming Chair','Chair','Bed',5000,'img3'),
+(4,'Barcalounger','Sofa','Living',10000,'img4');
 
 
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `furniture_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT '1',
+  `totalAmount` bigint(20) DEFAULT '0',
+  `orderDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+INSERT INTO `orders` VALUES (1,1,1,2,24000,'2019-04-14 09:15:56'),
+(2,2,1,5,200000,'2019-04-14 09:15:56'),
+(3,3,1,2,10000,'2019-04-14 09:15:56');

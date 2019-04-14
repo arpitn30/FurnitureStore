@@ -19,6 +19,28 @@
 	<link rel="stylesheet" href="static/css/Navbar-Apple.css">
 	<link rel="stylesheet" href="static/css/card.css">
 	<link rel="stylesheet" href="static/css/index.css">
+	
+	<script type="text/javascript">
+		function setAddURL(id){
+			var add = document.getElementById('add' + id);
+			add.href = add.getAttribute("href") + getQuantity(id);
+			return;
+		}
+		
+		function setBuyURL(id){
+			var buy = document.getElementById('buy' + id);
+			buy.href = buy.getAttribute("href") + getQuantity(id);
+			return;
+		}
+		
+		function getQuantity(id){
+			return document.getElementById("quantity" + id).value;
+		}
+	</script>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
+		<script>alert("Item Added to Cart");</script>
+	<% } %>
 
 </head>
 <body>
@@ -52,7 +74,6 @@
 				</div>
 			</div>
 			<% } %>
-			
 		</div>
  </div>
 </body>

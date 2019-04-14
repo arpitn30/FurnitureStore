@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Change Password</title>
 
 	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
     <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
