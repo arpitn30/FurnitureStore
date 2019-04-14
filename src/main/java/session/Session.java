@@ -65,6 +65,13 @@ public class Session {
 			return true;
 	}
 	
+	public static boolean isAdmin() {
+		if(Session.id == 0)
+			return true;
+		else
+			return false;
+	}
+	
 	public static void reset() {
 		Session.id = -1;
 		Session.name = null;

@@ -18,19 +18,28 @@
     <script src="static/js/jquery.min.js"></script>
     
     <link rel="stylesheet" href="static/css/Navbar-Apple.css">
+    
+    <% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
+		<script>alert("Furniture Added to the Database");</script>
+	<% } %>
 </head>
 
 <body>
-    
-    <div>
-    	<table width="100%">
-    	<tr align="center">
-    		<th></th>
-    		<th>Furniture Name</th>
-    		<th>Furniture Type</th>
-    		<th>Room</th>
-    		<th>Price</th>
-    	</tr>
+<jsp:include page="adminnav.jsp"></jsp:include>
+    <div class="container">
+    	<table class="table table-hover">
+		<thead class="thead-dark">
+			<tr align="center">
+				<th></th>
+				<th>Furniture Name</th>
+				<th>Furniture Type</th>
+				<th>Room</th>
+				<th>Price</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
     	<%
     		JDBC db = new JDBC();
 			db.setConnection();
@@ -49,7 +58,8 @@
     		</tr>    	
     	<% 
     		} 
-    	%> 
+		%>
+		</tbody>
     	</table>
     </div>
 </body>

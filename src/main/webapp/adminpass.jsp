@@ -29,9 +29,9 @@
 
 </head>
 <body class="login-dark">
-<jsp:include page="navbar.jsp"></jsp:include>
+<jsp:include page="adminnav.jsp"></jsp:include>
 	<div>
-        <form action="shop/user/changePass" method="post">
+        <form action="shop/admin/changePass" method="post">
             <h2 class="sr-only">Change Password</h2>
             <div class="form-group"><input class="form-control" type="password" name="oldpass" required="" placeholder="Old Password"></div>
             <div class="form-group"><input class="form-control" type="password" name="newpass" required="" placeholder="New Password"></div>

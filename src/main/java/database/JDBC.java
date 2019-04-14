@@ -66,6 +66,7 @@ public class JDBC {
 		connection = (Connection) DriverManager.getConnection(URL, user, pass);
 	}
 	
+	
 	public User getUser(int user_id) throws SQLException {
 		User user = null;
 		String qry = "SELECT * FROM `users` WHERE `user_id` = '" + user_id + "';";
@@ -131,6 +132,7 @@ public class JDBC {
 		return st.execute();
 	}
 	
+	
 	public ArrayList<Furniture> getFurniture() throws SQLException{
 		ArrayList<Furniture> list = new ArrayList<Furniture>();
 		String qry = "SELECT * FROM `furniture`;";
@@ -194,6 +196,8 @@ public class JDBC {
 		else
 			return false;
 	}
+	
+	
 	/**
 	 * 
 	 */
@@ -221,7 +225,6 @@ public class JDBC {
 	 * @return
 	 * @throws SQLException
 	 */
-	
 	public boolean addOrder(int furnitureId,int userId,int quantity, long totalAmount) throws SQLException {
 		String qry = "INSERT INTO `orders` (`furniture_id`, `user_id`, `quantity` , `totalAmount`) VALUES (?, ?, ?, ?);";
 		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
@@ -232,6 +235,7 @@ public class JDBC {
 		st.setLong(4, totalAmount);
 		return st.execute();
 	}
+	
 	
 	/**
 	 * Close Connection

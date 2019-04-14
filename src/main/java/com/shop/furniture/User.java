@@ -65,6 +65,8 @@ public class User {
 	@POST
 	@Path("changePass")
 	public Response changePassword(@FormParam("oldpass") String oldpass, @FormParam("newpass") String newpass, @FormParam("newpass2") String newpass2) throws URISyntaxException, ClassNotFoundException, SQLException{
+		if(!Session.isSet())
+			return Response.seeOther(new URI("/login")).build();
 		
 		if(!newpass.equals(newpass2))
 			return Response.seeOther(new URI("../changepass.jsp?status=mismatch")).build();
@@ -104,6 +106,9 @@ public class User {
 	@GET
 	@Path("editCart")
 	public Response editCart(@QueryParam("fid") int fid, @QueryParam("quantity") int quantity) throws URISyntaxException, ClassNotFoundException, SQLException {
+		if(!Session.isSet())
+			return Response.seeOther(new URI("/login")).build();
+		
 		JDBC db = new JDBC();
 		db.setConnection();
 		long totalAmount = db.getFurniture(fid).getPrice() * quantity;
@@ -115,6 +120,9 @@ public class User {
 	@GET
 	@Path("deleteFromCart")
 	public Response deleteFromCart(@QueryParam("fid") int fid) throws URISyntaxException, ClassNotFoundException, SQLException {
+		if(!Session.isSet())
+			return Response.seeOther(new URI("/login")).build();
+		
 		Local.deleteFromCart(fid);
 		return Response.seeOther(new URI("../viewcart.jsp?status=deleted")).build();
 	}
@@ -133,6 +141,9 @@ public class User {
 	@GET
 	@Path("purchase")
 	public Response purchase() throws SQLException, URISyntaxException, ClassNotFoundException {
+		if(!Session.isSet())
+			return Response.seeOther(new URI("/login")).build();
+		
 		JDBC db = new JDBC();
 		db.setConnection();
 		

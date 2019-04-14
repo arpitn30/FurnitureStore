@@ -39,6 +39,7 @@ public class Furniture {
 	private String image;
 	
 	public Furniture() {
+		this.id = 0;
 		this.name = "";
 		this.type = "";
 		this.room = "";

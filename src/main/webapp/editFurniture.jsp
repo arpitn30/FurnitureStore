@@ -14,6 +14,7 @@
     <script src="static/bootstrap/js/bootstrap4.min.js"></script>
     <script src="static/js/jquery.min.js"></script>
     
+    <link rel="stylesheet" href="static/css/Navbar-Apple.css">
     <link rel="stylesheet" href="static/css/form.css">
     
     <% if(request.getParameter("status") != null && request.getParameter("status").equals("exists")) { %>
@@ -32,46 +33,31 @@
 	%>
 </head>
 <body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
-<div class="row register-form">
-        <div class="col-md-8 col-md-offset-2">
-            <form class="form-horizontal custom-form" action="shop/admin/editFurniture" method="post">
+<jsp:include page="adminnav.jsp"></jsp:include>
+	<div class="row register-form">
+        <div class="col-md-6 offset-md-3">
+            <form class="custom-form" action="shop/admin/editFurniture" method="post">
                 <h1>Edit Furniture</h1>
                 <div>
-                <input type="hidden" name="fid" value=<%= fur.getId() %>>
+                    <div><input type="hidden" name="fid" required="" value="<%= fur.getId() %>"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="name-input-field">Name </label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text" name="name" placeholder="Furniture Name" required="" value=<%= fur.getName() %>>
-                    </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Name </label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="text" name="name" placeholder="Furniture Name" required="" value="<%= fur.getName() %>"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="type-input-field">Type </label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text" name="type" placeholder="Type of Furniture" required="" value=<%= fur.getType() %>>
-                    </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="type-input-field">Type </label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="text" name="type" placeholder="Type of Furniture" required="" value="<%= fur.getType() %>"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="room-input-field">Room </label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                        <input class="form-control" type="text" name="room" placeholder="Room" required="" value=<%= fur.getRoom() %>>
-                    </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="room-input-field">Room </label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="text" name="room" placeholder="Room" required="" value="<%= fur.getRoom() %>"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="price-input-field">Price </label>
-                    </div>
-                    <div class="col-sm-6 input-column">
-                        <input class="form-control" type="number" name="price" placeholder="Price of the Furniture" required="" value=<%= fur.getPrice() %>>
-                    </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="price-input-field">Price </label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="number" name="price" placeholder="Price of the Furniture" required="" value="<%= fur.getPrice() %>"></div>
                 </div>
-                <button class="btn btn-primary submit-button" type="submit">Edit Furniture</button>
+                <button class="btn btn-primary rounded shadow submit-button" type="submit">Edit Details</button>
             </form>
         </div>
     </div>

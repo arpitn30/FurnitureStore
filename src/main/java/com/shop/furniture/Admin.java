@@ -47,12 +47,21 @@ import session.Session;
 public class Admin {
 	
 	private static final String USER = "root@altran.com";
-	private static final String PASS = "superuser";
+	private static String PASS = "superuser";
 
 	@GET
 	public Response homepage() throws URISyntaxException {
-		if(Session.getId() == 0)
+		if(Session.isAdmin())
 			return Response.seeOther(new URI("../adminindex.jsp")).build();
+		else 
+			return Response.seeOther(new URI("../adminlogin.jsp")).build();
+	}
+	
+	@GET
+	@Path("home")
+	public Response homepage(@QueryParam("status") String status) throws URISyntaxException {
+		if(Session.isAdmin())
+			return Response.seeOther(new URI("../adminindex.jsp?status=" + status)).build();
 		else 
 			return Response.seeOther(new URI("../adminlogin.jsp")).build();
 	}
@@ -69,7 +78,8 @@ public class Admin {
 		
 		if(USER.equals(email) && PASS.equals(pass)) {
 			Session.setId(0);
-			return Response.seeOther(new URI("../adminindex.jsp")).build();
+			Session.setName("Admin");
+			return Response.seeOther(new URI("admin/")).build();
 		}
 		
 		return Response.seeOther(new URI("../adminlogin.jsp?status=false")).build();
@@ -78,12 +88,18 @@ public class Admin {
 	@GET
 	@Path("/addFurniture")
 	public Response addFurniture() throws URISyntaxException {
+		if(!Session.isAdmin())
+			return Response.seeOther(new URI("admin/login")).build();
+		
 		return Response.seeOther(new URI("../addFurniture.jsp")).build(); 
 	}
 	
 	@POST
 	@Path("/addFurniture")
 	public Response addFurniture(@FormParam("name") String name,@FormParam("type") String type, @FormParam("room") String room, @FormParam("price") int price) throws ClassNotFoundException, SQLException, URISyntaxException {
+		if(!Session.isAdmin())
+			return Response.seeOther(new URI("admin/login")).build();
+		
 		JDBC db = new JDBC();
 		db.setConnection();
 		if(db.checkFurniture(name))
@@ -91,32 +107,71 @@ public class Admin {
 		
 		db.addFurniture(name, type, room, price);
 		
-		return Response.seeOther(new URI("../adminindex.jsp")).build();
+		return Response.seeOther(new URI("admin/home?status=added")).build();
 	}
 	
 	@GET
 	@Path("/editFurniture")
 	public Response editFurniture(@QueryParam("fid") int fid) throws URISyntaxException {
+		if(!Session.isAdmin())
+			return Response.seeOther(new URI("admin/login")).build();
+		
 		return Response.seeOther(new URI("../editFurniture.jsp?fid=" + fid)).build();
 	}
 	
 	@POST
 	@Path("/editFurniture")
 	public Response editFurniture(@FormParam("fid") int fid, @FormParam("name") String name,@FormParam("type") String type, @FormParam("room") String room, @FormParam("price") int price) throws ClassNotFoundException, SQLException, URISyntaxException {
-		JDBC db = new JDBC();
-		db.setConnection();
+		if(!Session.isAdmin())
+			return Response.seeOther(new URI("admin/login")).build();
 		
-		db.editFurniture(fid, name, type, room, price);
+		if(fid == 0)
+			addFurniture(name, type, room, price);
 		
-		return Response.seeOther(new URI("../adminindex.jsp")).build();
+		else {
+			JDBC db = new JDBC();
+			db.setConnection();
+			
+			db.editFurniture(fid, name, type, room, price);
+		}
+		return Response.seeOther(new URI("admin/")).build();
 	}
 	
 	@GET
 	@Path("/deleteFurniture")
 	public Response deleteFurniture(@QueryParam("fid") int fid) throws ClassNotFoundException, SQLException, URISyntaxException {
+		if(!Session.isAdmin())
+			return Response.seeOther(new URI("admin/login")).build();
+		
 		JDBC db = new JDBC();
 		db.setConnection();
 		db.deleteFurniture(fid);
-		return Response.seeOther(new URI("../adminindex.jsp")).build();
+		return Response.seeOther(new URI("admin/")).build();
+	}
+	
+	@GET
+	@Path("changePass")
+	public Response changePassword() throws URISyntaxException{
+		if(!Session.isAdmin())
+			return Response.seeOther(new URI("admin/login")).build();
+		
+		return Response.seeOther(new URI("../adminpass.jsp")).build();
+	}
+	
+	@POST
+	@Path("changePass")
+	public Response changePassword(@FormParam("oldpass") String oldpass, @FormParam("newpass") String newpass, @FormParam("newpass2") String newpass2) throws URISyntaxException, ClassNotFoundException, SQLException{
+		if(!Session.isAdmin())
+			return Response.seeOther(new URI("admin/login")).build();
+		
+		if(!newpass.equals(newpass2))
+			return Response.seeOther(new URI("../adminpass.jsp?status=mismatch")).build();
+		
+		if(PASS.equals(oldpass))
+			return Response.seeOther(new URI("../adminpass.jsp?status=incorrect")).build();
+		
+		PASS = newpass;
+		
+		return Response.seeOther(new URI("../adminpass.jsp?status=true")).build();
 	}
 }
