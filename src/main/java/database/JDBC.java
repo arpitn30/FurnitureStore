@@ -30,7 +30,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -204,16 +203,15 @@ public class JDBC {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean addOrder(int orderId,int furnitureId,int userId,int quantity, Date orderDate,long totalAmount) throws SQLException {
-		String qry = "INSERT INTO `orders` (`order_id`, `furniture_id`, `user_id`, `quantity` , `orderDate`, `totalAmount`) VALUES (?, ?, ?, ?, ?, ?);";
+	
+	public boolean addOrder(int furnitureId,int userId,int quantity, long totalAmount) throws SQLException {
+		String qry = "INSERT INTO `orders` (`furniture_id`, `user_id`, `quantity` , `totalAmount`) VALUES (?, ?, ?, ?);";
 		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
 		
-		st.setInt(1, orderId);
-		st.setInt(2, furnitureId);
-		st.setInt(3, userId);
-		st.setInt(4, quantity);
-		st.setDate(5, (java.sql.Date) orderDate);
-		st.setLong(6, totalAmount);
+		st.setInt(1, furnitureId);
+		st.setInt(2, userId);
+		st.setInt(3, quantity);
+		st.setLong(4, totalAmount);
 		return st.execute();
 	}
 	

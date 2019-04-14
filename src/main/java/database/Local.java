@@ -63,7 +63,7 @@ public class Local {
 		Iterator<Order> itr = cart.iterator();
 		while(itr.hasNext()) {
 			Order item = itr.next();
-			if(item.getFid()==furniture_id) {
+			if(item.getFurniture_id()==furniture_id) {
 				item.setQuantity(item.getQuantity() + quantity);
 				return;
 			}
@@ -74,17 +74,19 @@ public class Local {
 	public static void deleteFromCart(int furniture_id) {
 		Iterator<Order> itr = cart.iterator();
 		while(itr.hasNext()) {
-			if(itr.next().getFid()==furniture_id)
+			if(itr.next().getFurniture_id()==furniture_id)
 				itr.remove();
 		}
 	}
 	
-	public static void editCart(int furniture_id, int quantity) {
+	public static void editCart(int furniture_id, int quantity, long totalAmount) {
 		Iterator<Order> itr = cart.iterator();
 		while(itr.hasNext()) {
 			Order item = itr.next();
-			if(item.getFid()==furniture_id)
+			if(item.getFurniture_id()==furniture_id) {
 				item.setQuantity(quantity);
+				item.setTotalAmount(totalAmount);
+			}
 		}		
 	}
 	

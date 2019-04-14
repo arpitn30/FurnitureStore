@@ -35,8 +35,8 @@ import java.util.Date;
 public class Order {
 
 	int id;
-	int fid;
-	int uid;
+	int furniture_id;
+	int user_id;
 	int quantity;
 	Date orderDate;
 	long totalAmount;
@@ -45,93 +45,115 @@ public class Order {
 	
 	/**
 	 * @param id
-	 * @param fid
-	 * @param uid
+	 * @param furniture_id
+	 * @param user_id
 	 * @param quantity
 	 * @param orderDate
 	 */
-	public Order(int id, int fid, int uid, int quantity, Date orderDate, long totalAmount) {
+	public Order(int id, int furniture_id, int user_id, int quantity, Date orderDate, long totalAmount) {
 		this.id = id;
-		this.fid = fid;
-		this.uid = uid;
+		this.furniture_id = furniture_id;
+		this.user_id = user_id;
 		this.quantity = quantity;
 		this.orderDate = orderDate;
 		this.totalAmount = totalAmount;
 	}
 	
 	/**
-	 * @param fid
-	 * @param uid
+	 * @param furniture_id
+	 * @param user_id
 	 * @param quantity
 	 * @param date
 	 * @param orderDate
 	 */
-	public Order(int fid, int uid, int quantity, long totalAmount) {
-		this.fid = fid;
-		this.uid = uid;
+	public Order(int furniture_id, int user_id, int quantity, long totalAmount) {
+		this.furniture_id = furniture_id;
+		this.user_id = user_id;
 		this.quantity = quantity;
 		this.totalAmount = totalAmount;
 	}
-	
-	
+
 	/**
 	 * @return the id
 	 */
 	public int getId() {
 		return id;
 	}
+
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	/**
-	 * @return the fid
+	 * @return the furniture_id
 	 */
-	public int getFid() {
-		return fid;
+	public int getFurniture_id() {
+		return furniture_id;
 	}
+
 	/**
-	 * @param fid the fid to set
+	 * @param furniture_id the furniture_id to set
 	 */
-	public void setFid(int fid) {
-		this.fid = fid;
+	public void setFurniture_id(int furniture_id) {
+		this.furniture_id = furniture_id;
 	}
+
 	/**
-	 * @return the uid
+	 * @return the user_id
 	 */
-	public int getUid() {
-		return uid;
+	public int getUser_id() {
+		return user_id;
 	}
+
 	/**
-	 * @param uid the uid to set
+	 * @param user_id the user_id to set
 	 */
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
+
 	/**
 	 * @return the quantity
 	 */
 	public int getQuantity() {
 		return quantity;
 	}
+
 	/**
 	 * @param quantity the quantity to set
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
 	/**
 	 * @return the orderDate
 	 */
 	public Date getOrderDate() {
 		return orderDate;
 	}
+
 	/**
 	 * @param orderDate the orderDate to set
 	 */
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
+	}
+
+	/**
+	 * @return the totalAmount
+	 */
+	public long getTotalAmount() {
+		return totalAmount;
+	}
+
+	/**
+	 * @param totalAmount the totalAmount to set
+	 */
+	public void setTotalAmount(long totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 }
