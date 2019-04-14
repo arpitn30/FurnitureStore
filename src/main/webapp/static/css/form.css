@@ -1,7 +1,7 @@
 .register-form form.custom-form {
   padding: 55px;
   box-sizing: border-box;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.7);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   font: bold 14px sans-serif;
   text-align: center;
@@ -52,6 +52,13 @@
   border: 1px solid #dbdbdb;
   border-radius: 2px;
   height: 42px;
+}
+
+.register-form .custom-form .input-column input:focus {
+  border-color: rgb(56, 39, 216);
+  outline:0;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
 }
 
 .register-form .custom-form .submit-button {

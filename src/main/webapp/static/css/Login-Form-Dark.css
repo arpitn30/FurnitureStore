@@ -1,0 +1,56 @@
+.login-dark {
+	height: auto;
+  background: #475d62 url(../img/background.jpg);
+  background-size: cover;
+  position: relative;
+}
+
+form {
+  max-width: 320px;
+  width: 90%;
+  background-color: rgba(30,40,51,0.9);
+  padding: 40px;
+  border-radius: 4px;
+  margin:0 auto 25px;
+  margin-top:7%;
+  color: #fff;
+  box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+}
+
+.illustration {
+  text-align: center;
+  padding: 15px 0 20px;
+  font-size: 100px;
+  color: #2980ef;
+}
+
+form .form-control {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #434a52;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+}
+
+form .btn-primary {
+  background: #2dbb9e;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 26px;
+  text-shadow: none;
+  outline: none;
+}
+
+form .btn-primary:hover, .login-dark form .btn-primary:active {
+  background: #2dbb9e;
+  outline: none;
+}
+
+form .btn-primary:active {
+  transform: translateY(1px);
+}
+

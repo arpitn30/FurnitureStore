@@ -66,6 +66,16 @@ public class JDBC {
 		connection = (Connection) DriverManager.getConnection(URL, user, pass);
 	}
 	
+	public User getUser(int user_id) throws SQLException {
+		User user = null;
+		String qry = "SELECT * FROM `users` WHERE `user_id` = '" + user_id + "';";
+		Statement statement = (Statement) connection.createStatement();
+		ResultSet rs = statement.executeQuery(qry);
+		while(rs.next())
+			user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+		return user;
+	}
+	
 	public User getUser(String email) throws SQLException {
 		User user = null;
 		String qry = "SELECT * FROM `users` WHERE `email` = '" + email + "';";
@@ -90,6 +100,14 @@ public class JDBC {
 		st = (PreparedStatement) connection.prepareStatement(qry);
 		st.setInt(1, user_id);
 		st.setLong(2, 0);
+		st.execute();
+	}
+	
+	public void updatePassword(int user_id, String password) throws SQLException {
+		String qry = "UPDATE `users` SET `password`=? WHERE `user_id`=?;";
+		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
+		st.setString(1, password);
+		st.setInt(2, user_id);
 		st.execute();
 	}
 	
@@ -186,7 +204,7 @@ public class JDBC {
 		ResultSet rs = statement.executeQuery(qry);
 		
 		while(rs.next()) {
-			Order o = new Order(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getTimestamp(5), rs.getLong(6));
+			Order o = new Order(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getLong(5), rs.getTimestamp(6));
 			pastOrders.add(o);
 		}
 		return pastOrders;

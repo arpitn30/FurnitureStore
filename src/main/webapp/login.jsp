@@ -7,9 +7,11 @@
 	<title>Log In</title>
 
 	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
-    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="static/js/jquery-3.2.0.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap4.min.css">
+    <script src="static/bootstrap/js/bootstrap4.min.js"></script>
+    <script src="static/js/jquery.min.js"></script>
+	
 	<link rel="stylesheet" href="static/css/Google-Style-Login.css">
 	<link rel="stylesheet" href="static/css/login.css">
 	
@@ -20,9 +22,13 @@
 	<% if(request.getParameter("status") != null && request.getParameter("status").equals("true")) { %>
 		<script>alert("Registration Successful");</script>
 	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("password")) { %>
+		<script>alert("Password Successfully Changed");</script>
+	<% } %>
 
 </head>
-<body style="background-image: url(static/img/background.jpg); max-width: 100%;  background-size: cover;">
+<body>
 
 	<div class="container">
 
@@ -37,7 +43,7 @@
 	                </div>
 	            </div>
 	            <button class="btn btn-danger btn-block btn-lg btn-signin" type="submit">LOGIN </button>
-	        </form><a href="#" class="forgot-password">Forgot your password?</a>
+	        </form><a href="shop/forgotPass" class="forgot-password">Forgot your password?</a>
 	    </div>
 	    <div class="Register-card text-center"><strong>Don't have an account? <a class="text-danger" href="shop/register">Register here</a></strong>
 	    </div>    

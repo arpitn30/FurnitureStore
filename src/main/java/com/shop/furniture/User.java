@@ -29,7 +29,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
@@ -52,7 +54,33 @@ public class User {
 	}
 	
 	@GET
-	@Path("viewcart")
+	@Path("changePass")
+	public Response changePassword() throws URISyntaxException{
+		if(!Session.isSet())
+			return Response.seeOther(new URI("/login")).build();
+		
+		return Response.seeOther(new URI("../changepass.jsp")).build();
+	}
+	
+	@POST
+	@Path("changePass")
+	public Response changePassword(@FormParam("oldpass") String oldpass, @FormParam("newpass") String newpass, @FormParam("newpass2") String newpass2) throws URISyntaxException, ClassNotFoundException, SQLException{
+		
+		if(!newpass.equals(newpass2))
+			return Response.seeOther(new URI("../changepass.jsp?status=mismatch")).build();
+		
+		JDBC db = new JDBC();
+		db.setConnection();
+		if(!db.getUser(Session.getId()).getPassword().equals(oldpass))
+			return Response.seeOther(new URI("../changepass.jsp?status=incorrect")).build();
+		db.updatePassword(Session.getId(), newpass);
+		db.closeConnection();
+		
+		return Response.seeOther(new URI("../changepass.jsp?status=true")).build();
+	}
+	
+	@GET
+	@Path("viewCart")
 	public Response viewcart() throws URISyntaxException {
 		if(!Session.isSet())
 			return Response.seeOther(new URI("/login")).build();
@@ -70,7 +98,7 @@ public class User {
 		long totalAmount = db.getFurniture(fid).getPrice() * quantity;
 		db.closeConnection();
 		Local.addToCart(fid, Session.getId(), quantity, totalAmount);
-		return Response.seeOther(new URI("../index.jsp")).build();
+		return Response.seeOther(new URI("/home?status=added")).build();
 	}
 	
 	@GET
@@ -81,14 +109,14 @@ public class User {
 		long totalAmount = db.getFurniture(fid).getPrice() * quantity;
 		db.closeConnection();
 		Local.editCart(fid, quantity, totalAmount);
-		return Response.seeOther(new URI("../viewcart.jsp")).build();
+		return Response.seeOther(new URI("user/viewcart")).build();
 	}
 	
 	@GET
 	@Path("deleteFromCart")
 	public Response deleteFromCart(@QueryParam("fid") int fid) throws URISyntaxException, ClassNotFoundException, SQLException {
 		Local.deleteFromCart(fid);
-		return Response.seeOther(new URI("../viewcart.jsp")).build();
+		return Response.seeOther(new URI("../viewcart.jsp?status=deleted")).build();
 	}
 	
 	@GET
@@ -97,8 +125,9 @@ public class User {
 		if(!Session.isSet())
 			return Response.seeOther(new URI("/login")).build(); 
 		
-		addToCart(fid,quantity);
-	    return Response.seeOther(new URI("../payment.jsp")).build();
+		addToCart(fid, quantity);
+		purchase();
+	    return Response.seeOther(new URI("/")).build();
 	}
 	
 	@GET

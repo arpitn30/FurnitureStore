@@ -40,7 +40,7 @@ public class Order {
 	int quantity;
 	Date orderDate;
 	long totalAmount;
-	SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
+	SimpleDateFormat sdf= new SimpleDateFormat("dd MMM yyyy");
 	
 	
 	/**
@@ -50,7 +50,7 @@ public class Order {
 	 * @param quantity
 	 * @param orderDate
 	 */
-	public Order(int id, int furniture_id, int user_id, int quantity, Date orderDate, long totalAmount) {
+	public Order(int id, int furniture_id, int user_id, int quantity, long totalAmount, Date orderDate) {
 		this.id = id;
 		this.furniture_id = furniture_id;
 		this.user_id = user_id;
@@ -132,8 +132,8 @@ public class Order {
 	/**
 	 * @return the orderDate
 	 */
-	public Date getOrderDate() {
-		return orderDate;
+	public String getOrderDate() {
+		return sdf.format(orderDate);
 	}
 
 	/**

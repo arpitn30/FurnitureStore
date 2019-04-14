@@ -65,6 +65,7 @@ public class Local {
 			Order item = itr.next();
 			if(item.getFurniture_id()==furniture_id) {
 				item.setQuantity(item.getQuantity() + quantity);
+				item.setTotalAmount(item.getTotalAmount() + totalAmount);
 				return;
 			}
 		}

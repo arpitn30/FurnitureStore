@@ -5,10 +5,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Register</title>
+	
 	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
-    <script src="static/js/jquery.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap4.min.css">
+    <script src="static/bootstrap/js/bootstrap4.min.js"></script>
+    <script src="static/js/jquery.min.js"></script>
+    
     <link rel="stylesheet" href="static/css/form.css">
     
     <% if(request.getParameter("status") != null && request.getParameter("status").equals("exists")) { %>
@@ -43,7 +46,7 @@
                     <div class="col-sm-6 input-column"><input class="form-control" type="password" name="password2" required="" placeholder="Retype Password"></div>
                 </div>
                 <div class="form-row form-group">
-                    <div class="col-sm-4 label-column"><label class="col-form-label" for="password2-input-field">Security Question</label></div>
+                    <div class="col-sm-4 label-column"><label class="col-form-label">Security Question</label></div>
                     <div class="col-sm-6 input-column"><label class="col-form-label">What is the name of your best friend?</label></div>
                 </div>
                 <div class="form-row form-group">

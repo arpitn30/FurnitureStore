@@ -36,16 +36,20 @@
 		}
 	</script>
 
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
+		<script>alert("Item Added to Cart");</script>
+	<% } %>
+
 </head>
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
 
-		<%
-    		JDBC db = new JDBC();
-			db.setConnection();
-			ArrayList<Furniture> data = db.getFurniture();
-			db.closeConnection();
-        %> 
+	<%
+    	JDBC db = new JDBC();
+		db.setConnection();
+		ArrayList<Furniture> data = db.getFurniture();
+		db.closeConnection();
+	%> 
 <div class="container">
    <div class="row">
       <% for(Furniture fur: data){ %>     

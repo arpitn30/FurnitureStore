@@ -73,6 +73,7 @@
 
 .login-card .btn.btn-signin:hover, .login-card .btn.btn-signin:active, .login-card .btn.btn-signin:focus{
   background:rgb(12, 97, 33);
+  text-decoration: none;
 }
 
 .login-card .forgot-password{
