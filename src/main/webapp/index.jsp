@@ -41,6 +41,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
+<jsp:include page="searchbar.jsp"></jsp:include>
 	<%
     	JDBC db = new JDBC();
 		db.setConnection();
