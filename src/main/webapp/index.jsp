@@ -11,9 +11,10 @@
 
 	<link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
 	<link rel="stylesheet" href="static/fonts/font-awesome.min.css">
-    <link href="static/bootstrap/css/bootstrap4.min.css" rel="stylesheet"/>
-    <script src="static/bootstrap/js/bootstrap4.min.js"></script>
-	<script src="static/js/jquery-3.2.0.min.js"></script>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap4.min.css">
+  	<script src="static/js/jquery.min.js"></script>
+  	<script src="static/js/popper.min.js"></script>
+  	<script src="static/bootstrap/js/bootstrap4.min.js"></script>
 	
 	<link rel="stylesheet" href="static/css/Navbar-Apple.css">
 	<link href="static/css/index.css" rel="stylesheet"/>
