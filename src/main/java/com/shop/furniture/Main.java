@@ -75,6 +75,8 @@ public class Main {
 		JDBC db = new JDBC();
 		db.setConnection();
 		User user = db.getUser(email);
+		if(user == null)
+			return Response.seeOther(new URI("../login.jsp?status=false")).build();
 		if(user.getPassword().equals(pass)) {
 			Session.setId(user.getId());
 			Session.setName(user.getName());
