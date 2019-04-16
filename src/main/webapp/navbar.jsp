@@ -14,15 +14,20 @@
                     <li class="nav-item"><a class="nav-link active" href="shop/user/changePass"><i class="fa fa-hashtag"></i> Change Password</a></li>
                     <% if(Session.getId() == -1) { %>
                     <li class="nav-item"><a class="nav-link active" href="shop/register"><i class="fa fa-user-circle-o"></i>  Register</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="shop/login"><i class="fa fa-sign-in"></i>  Login</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fa fa-sign-in"></i>  Login</a>
+                        <ul class="dropdown-menu dropdown-dark dropdown-menu-right" role="menu">
+                        <li><a class="dropdown-item" href="shop/login"><i class="fa fa-smile-o"></i>  User Login</a></li>
+                        <li><a class="dropdown-item" href="shop/admin/login"><i class="fa fa-lock"></i>  Admin Login</a></li>
+                        </ul>
+                    </li>
                     <% } else {%>
-                    <li class="nav-item"><a class="nav-link active" href="shop/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fa fa-user-circle-o"></i> <%= Session.getName() %></a>
                         <ul class="dropdown-menu dropdown-dark dropdown-menu-right" role="menu">
-                        <li><a class="dropdown-item" href="shop/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                        <li><a class="dropdown-item" href="shop/logout"><i class="fa fa-sign-out"></i>  Logout</a></li>
                         </ul>
                     </li>
                     <% } %>
+                    <br>
                 </ul>
             </div>
         </div>
