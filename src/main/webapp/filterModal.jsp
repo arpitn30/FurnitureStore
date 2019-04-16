@@ -7,7 +7,7 @@
 
 <!-- The Modal -->
 <div class="modal fade" id="filterForm">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
       <!-- Modal Header -->
@@ -22,6 +22,7 @@
         	<div class="form-group">
 	        	<label class="control-label col-sm-2" for="type">Type:</label>
 	        	<select class="form-control" id="type" name="type">
+	        		<option value="all">All Types</option>
 	        		<% for(String type : db.getTypes()) { %>
 	        		<option value="<%= type %>"><%= type %></option>
 	        		<% } %>
@@ -30,6 +31,7 @@
         	<div class="form-group">
 	        	<label class="control-label col-sm-2" for="room">Room:</label>
 	        	<select class="form-control" id="room" name="room">
+	        		<option value="all">All Types</option>
 	        		<% for(String room : db.getRooms()) { %>
 	        		<option value="<%= room %>"><%= room %></option>
 	        		<% } %>

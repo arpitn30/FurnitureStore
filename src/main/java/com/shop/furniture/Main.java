@@ -80,7 +80,7 @@ public class Main {
 		if(user.getPassword().equals(pass)) {
 			Session.setId(user.getId());
 			Session.setName(user.getName());
-			return Response.seeOther(new URI("../index.jsp")).build();
+			return Response.seeOther(new URI("/")).build();
 		}
 		
 		return Response.seeOther(new URI("../login.jsp?status=false")).build();
@@ -113,7 +113,7 @@ public class Main {
 	@Path("/logout")
 	public Response logout() throws URISyntaxException {
 		Session.reset();
-		return Response.seeOther(new URI("../index.jsp")).build();
+		return Response.seeOther(new URI("/")).build();
 	}
 	
 	@GET
@@ -139,5 +139,32 @@ public class Main {
 		
 		db.updatePassword(user.getId(), pass);
 		return Response.seeOther(new URI("../login.jsp?status=password")).build();
+	}
+	
+	
+	@POST
+	@Path("/search")
+	public Response search(@FormParam("category") String category, @FormParam("search") String search) throws URISyntaxException {
+		if(category.equals("all"))
+			category = "";
+		return Response.seeOther(new URI("../index.jsp?category=" + category + "&search=" + search)).build();
+	}
+	
+	@POST
+	@Path("/filter")
+	public Response filter(@FormParam("type") String type, @FormParam("room") String room, @FormParam("min") String minPrice, @FormParam("max") String maxPrice) throws URISyntaxException {
+		if(type.equals("all"))
+			type = "";
+		
+		if(room.equals("all"))
+			room = "";
+		
+		if(minPrice.equals("") || minPrice == null)
+			minPrice = "0";
+		
+		if(maxPrice.equals("") || maxPrice == null)
+			maxPrice = Integer.toString(Integer.MAX_VALUE);
+		
+		return Response.seeOther(new URI("../index.jsp?type=" + type + "&room=" + room + "&min=" + minPrice + "&max=" + maxPrice)).build();
 	}
 }

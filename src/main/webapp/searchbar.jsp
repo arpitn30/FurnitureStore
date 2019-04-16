@@ -28,3 +28,4 @@
 </header>
 
 <jsp:include page="filterModal.jsp"></jsp:include>
+<br>
