@@ -237,6 +237,32 @@ public class JDBC {
 	}
 	
 	
+	public ArrayList<String> getTypes() throws SQLException {
+		ArrayList<String> list = new ArrayList<String>();
+		String qry = "SELECT DISTINCT `type` FROM `furniture` ORDER BY ASC;";
+		Statement statement = (Statement) connection.createStatement();
+		ResultSet rs = statement.executeQuery(qry);
+		
+		while(rs.next()) {
+			String types = rs.getString(1);
+			list.add(types);
+		}
+		return list;
+	}
+	
+	public ArrayList<String> getRooms() throws SQLException {
+		ArrayList<String> list = new ArrayList<String>();
+		String qry = "SELECT DISTINCT `room` FROM `furniture` ORDER BY ASC;";
+		Statement statement = (Statement) connection.createStatement();
+		ResultSet rs = statement.executeQuery(qry);
+		
+		while(rs.next()) {
+			String rooms = rs.getString(1);
+			list.add(rooms);
+		}
+		return list;
+	}
+	
 	/**
 	 * Close Connection
 	 */
