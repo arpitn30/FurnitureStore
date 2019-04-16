@@ -54,6 +54,12 @@
 		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
 		<strong>Success!</strong> Item Added to Cart</div>
 	<% } %>
+	
+	<% if(request.getParameter("status") != null && request.getParameter("status").equals("false")) { %>
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<strong>Error!</strong> Invalid quantity</div>
+	<% } %>
 
    <div class="row">
       <% for(Furniture fur: data){ %>     

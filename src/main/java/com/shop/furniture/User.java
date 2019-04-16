@@ -95,6 +95,9 @@ public class User {
 	public Response addToCart(@QueryParam("fid") int fid, @QueryParam("quantity") int quantity) throws SQLException, ClassNotFoundException, URISyntaxException {
 		if(!Session.isSet())
 			return Response.seeOther(new URI("/login")).build();
+		if(quantity < 1) {
+			return Response.seeOther(new URI("/home?status=false")).build();
+		}
 		JDBC db = new JDBC();
 		db.setConnection();
 		long totalAmount = db.getFurniture(fid).getPrice() * quantity;
@@ -109,12 +112,15 @@ public class User {
 		if(!Session.isSet())
 			return Response.seeOther(new URI("/login")).build();
 		
+		if(quantity < 1)
+			return Response.seeOther(new URI("../viewcart.jsp?status=false")).build();
+		
 		JDBC db = new JDBC();
 		db.setConnection();
 		long totalAmount = db.getFurniture(fid).getPrice() * quantity;
 		db.closeConnection();
 		Local.editCart(fid, quantity, totalAmount);
-		return Response.seeOther(new URI("user/viewcart")).build();
+		return Response.seeOther(new URI("user/viewCart")).build();
 	}
 	
 	@GET
@@ -134,8 +140,7 @@ public class User {
 			return Response.seeOther(new URI("/login")).build(); 
 		
 		addToCart(fid, quantity);
-		purchase();
-	    return Response.seeOther(new URI("/")).build();
+	    return purchase();
 	}
 	
 	@GET
@@ -170,5 +175,26 @@ public class User {
 			return Response.seeOther(new URI("/login")).build();
 		
 		return Response.seeOther(new URI("../vieworders.jsp")).build();
+	}
+	
+	@GET
+	@Path("wallet")
+	public Response addBalance() throws URISyntaxException
+	{
+		return Response.seeOther(new URI("../wallet.jsp")).build();
+
+	}
+	
+	@POST
+	@Path("addBalance")
+	public Response addBalance(@FormParam("user_id") int user_id, @FormParam("addBalance") int addBalance) throws ClassNotFoundException, SQLException, URISyntaxException
+	{
+		JDBC db = new JDBC();
+		db.setConnection();
+		db.addBalance(user_id, addBalance);
+		db.closeConnection();
+		return Response.seeOther(new URI("user/wallet")).build();
+		
+		
 	}
 }
