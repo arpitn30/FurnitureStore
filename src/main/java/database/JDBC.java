@@ -201,9 +201,9 @@ public class JDBC {
 	/**
 	 * 
 	 */
-	public ArrayList<Order> getOrders() throws SQLException{ 
+	public ArrayList<Order> getOrders(int user_id) throws SQLException{ 
 		ArrayList<Order> pastOrders = new ArrayList<Order>();
-		String qry = "SELECT * FROM `orders`;";
+		String qry = "SELECT * FROM `orders` WHERE `user_id` = " + user_id + ";";
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 		

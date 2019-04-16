@@ -50,7 +50,7 @@
 			db.setConnection();
 			ArrayList<Order> data = db.getOrders();
         	for(Order order: data){
-        		Furniture fur = db.getFurniture(order.getFurniture_id());
+        		Furniture fur = db.getFurniture(order.getFurniture_id(Session.getId()));
         %> 
     		<tr align="center">
     			<td><img height="45px" width="45px" class="img-circle img-responsive" src=<%= fur.getImage() %>></td>
