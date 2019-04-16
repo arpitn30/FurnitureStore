@@ -48,9 +48,9 @@
     	<%
     		JDBC db = new JDBC();
 			db.setConnection();
-			ArrayList<Order> data = db.getOrders();
+			ArrayList<Order> data = db.getOrders(Session.getId());
         	for(Order order: data){
-        		Furniture fur = db.getFurniture(order.getFurniture_id(Session.getId()));
+        		Furniture fur = db.getFurniture(order.getFurniture_id());
         %> 
     		<tr align="center">
     			<td><img height="45px" width="45px" class="img-circle img-responsive" src=<%= fur.getImage() %>></td>
