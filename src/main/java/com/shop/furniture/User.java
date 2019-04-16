@@ -159,6 +159,7 @@ public class User {
 			db.addBalance(Session.getId(), (-1 * item.getTotalAmount()));
 		}
 		db.closeConnection();
+		Local.clearCart();
 		return Response.seeOther(new URI("../vieworders.jsp?status=success")).build();
 	}
 
