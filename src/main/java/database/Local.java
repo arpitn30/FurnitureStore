@@ -7,7 +7,7 @@ utilization of this source code in whole or in part is  prohibited without
 Aricent Altran Group
 
 	  File Name	          	    : Local.java
-	  Principal Author      	: Gagan Preet kaur
+	  Principal Author      	:
 	  Subsystem Name       	    :
 	  Module Name           	: database
 	  Date of First Release 	:
@@ -19,7 +19,7 @@ Aricent Altran Group
 
 	  Version      				: 1.0
 	  Date(DD/MM/YYYY) 			: Apr 10, 2019
-	  Modified by				: Gagan Preet Kaur
+	  Modified by				:
 	  Description of change 	:
 
 ***********************************************************************/
@@ -31,7 +31,7 @@ import java.util.Iterator;
 import models.Order;
 
 /**
- * @author Gagan Preet Kaur
+ * 
  *
  */
 public class Local {
@@ -72,6 +72,10 @@ public class Local {
 		Local.cart.add(new Order(furniture_id, user_id, quantity, totalAmount));
 	}
 	
+	/**
+	 * Delete an item from the cart
+	 * @param furniture_id
+	 */
 	public static void deleteFromCart(int furniture_id) {
 		Iterator<Order> itr = cart.iterator();
 		while(itr.hasNext()) {
@@ -80,6 +84,12 @@ public class Local {
 		}
 	}
 	
+	/**
+	 * Edit the quantity and total amount of a quantity in the cart
+	 * @param furniture_id
+	 * @param quantity
+	 * @param totalAmount
+	 */
 	public static void editCart(int furniture_id, int quantity, long totalAmount) {
 		Iterator<Order> itr = cart.iterator();
 		while(itr.hasNext()) {

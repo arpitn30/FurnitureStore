@@ -7,7 +7,7 @@ utilization of this source code in whole or in part is  prohibited without
 Aricent Altran Group
 
 	  File Name	          	    : Order.java
-	  Principal Author      	: Gagan Preet kaur
+	  Principal Author      	: 
 	  Subsystem Name       	    :
 	  Module Name           	: models
 	  Date of First Release 	:
@@ -19,7 +19,7 @@ Aricent Altran Group
 
 	  Version      				: 1.0
 	  Date(DD/MM/YYYY) 			: Apr 10, 2019
-	  Modified by				: Gagan Preet Kaur
+	  Modified by				: 
 	  Description of change 	:
 
 ***********************************************************************/
@@ -29,10 +29,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author Gagan Preet Kaur
+ *
  *
  */
-public class Order {
+public class Order implements OrderDAO {
 
 	int id;
 	int furniture_id;

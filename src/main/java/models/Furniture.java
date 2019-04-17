@@ -6,7 +6,7 @@
 *	without  written consent from Aricent ALTRAN group.
 *
 *	  File Name	            	:	Furniture.java
-*	  Principal Author      	:	Arpit Nandwani
+*	  Principal Author      	:	
 *	  Subsystem Name        	:
 *	  Module Name           	:	models
 *	  Date of First Release 	:	
@@ -18,7 +18,7 @@
 *
 *	  Version      				:	1.0
 *	  Date(DD/MM/YYYY) 			:	Apr 4, 2019
-*	  Modified by				:	Arpit Nandwani
+*	  Modified by				:	
 *	  Description of change 	:
 *
 	**********************************************************************
@@ -29,7 +29,7 @@ package models;
  * 
  *
  */
-public class Furniture {
+public class Furniture implements FurnitureDAO {
 
 	private int id;
 	private String name;
