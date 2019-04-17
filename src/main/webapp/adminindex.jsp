@@ -25,6 +25,7 @@
 
 <body>
 <jsp:include page="adminnav.jsp"></jsp:include>
+<jsp:include page="searchbar.jsp"></jsp:include>
     <div class="container">
     
     <% if(request.getParameter("status") != null && request.getParameter("status").equals("added")) { %>
