@@ -145,9 +145,19 @@ public class Main {
 	@POST
 	@Path("/search")
 	public Response search(@FormParam("category") String category, @FormParam("search") String search) throws URISyntaxException {
+		String name = "";
+		String type = "";
+		String room = "";
+		int minPrice = 0;
+		int maxPrice = Integer.MAX_VALUE;
+		
 		if(category.equals("all"))
-			category = "";
-		return Response.seeOther(new URI("../index.jsp?category=" + category + "&search=" + search)).build();
+			name = search;
+		else if(category.equals("types"))
+			type = search;
+		else if((category.equals("rooms")))
+			room = search;
+		return Response.seeOther(new URI("../index.jsp?name=" + name + "&type=" + type + "&room=" + room + "&min=" + minPrice + "&max=" + maxPrice)).build();
 	}
 	
 	@POST
@@ -165,6 +175,6 @@ public class Main {
 		if(maxPrice.equals("") || maxPrice == null)
 			maxPrice = Integer.toString(Integer.MAX_VALUE);
 		
-		return Response.seeOther(new URI("../index.jsp?type=" + type + "&room=" + room + "&min=" + minPrice + "&max=" + maxPrice)).build();
+		return Response.seeOther(new URI("../index.jsp?name=&type=" + type + "&room=" + room + "&min=" + minPrice + "&max=" + maxPrice)).build();
 	}
 }

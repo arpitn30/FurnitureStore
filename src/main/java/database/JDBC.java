@@ -146,6 +146,27 @@ public class JDBC {
 		return list;
 	}
 	
+	public ArrayList<Furniture> getFurniture(String name, String type, String room, String min, String max) throws SQLException {
+		ArrayList<Furniture> list = new ArrayList<Furniture>();
+		int pricemin = Integer.parseInt(min);
+		int pricemax = Integer.parseInt(max);
+		String qry = "SELECT * FROM `furniture` WHERE `name` LIKE ? AND `type` LIKE ? AND `room` LIKE ? AND `price` >= ? AND `price` <= ?;";
+		PreparedStatement st = (PreparedStatement) connection.prepareStatement(qry);
+		
+		st.setString(1, "%" + name + "%");
+		st.setString(2, "%" + type + "%");
+		st.setString(3, "%" + room + "%");
+		st.setInt(4, pricemin);
+		st.setInt(5, pricemax);
+		
+		ResultSet rs = st.executeQuery();
+		while(rs.next()) {
+			Furniture f = new Furniture(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6));
+			list.add(f);
+		}
+		return list;
+	}
+	
 	public Furniture getFurniture(int fid) throws SQLException {
 		Furniture fur = null;
 		String qry = "SELECT * FROM `furniture` WHERE `furniture_id` = " + fid + ";";
