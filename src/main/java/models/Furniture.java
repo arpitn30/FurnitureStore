@@ -37,17 +37,18 @@ public class Furniture implements FurnitureDAO {
 	private String room;
 	private int price;
 	private String image;
-	
+
 	public Furniture() {
 		this.id = 0;
 		this.name = "";
 		this.type = "";
 		this.room = "";
 		this.price = 0;
-	}	
+	}
 
 	/**
 	 * Parameterized constructor
+	 * 
 	 * @param id
 	 * @param name
 	 * @param type
@@ -62,9 +63,9 @@ public class Furniture implements FurnitureDAO {
 		this.type = type;
 		this.room = room;
 		this.price = price;
-		if(image == null)
+		if (image == null)
 			this.image = "static/img/furniture/default.png";
-		else 
+		else
 			this.image = "static/img/furniture/" + image + ".png";
 	}
 
@@ -79,7 +80,8 @@ public class Furniture implements FurnitureDAO {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -93,7 +95,8 @@ public class Furniture implements FurnitureDAO {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -107,7 +110,8 @@ public class Furniture implements FurnitureDAO {
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -121,7 +125,8 @@ public class Furniture implements FurnitureDAO {
 	}
 
 	/**
-	 * @param room the room to set
+	 * @param room
+	 *            the room to set
 	 */
 	public void setRoom(String room) {
 		this.room = room;
@@ -135,7 +140,8 @@ public class Furniture implements FurnitureDAO {
 	}
 
 	/**
-	 * @param price the price to set
+	 * @param price
+	 *            the price to set
 	 */
 	public void setPrice(int price) {
 		this.price = price;
@@ -149,10 +155,11 @@ public class Furniture implements FurnitureDAO {
 	}
 
 	/**
-	 * @param image the image to set
+	 * @param image
+	 *            the image to set
 	 */
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+
 }

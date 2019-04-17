@@ -40,9 +40,8 @@ public class Order implements OrderDAO {
 	int quantity;
 	Date orderDate;
 	long totalAmount;
-	SimpleDateFormat sdf= new SimpleDateFormat("dd MMM yyyy");
-	
-	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+
 	/**
 	 * @param id
 	 * @param furniture_id
@@ -50,7 +49,8 @@ public class Order implements OrderDAO {
 	 * @param quantity
 	 * @param orderDate
 	 */
-	public Order(int id, int furniture_id, int user_id, int quantity, long totalAmount, Date orderDate) {
+	public Order(int id, int furniture_id, int user_id, int quantity,
+			long totalAmount, Date orderDate) {
 		this.id = id;
 		this.furniture_id = furniture_id;
 		this.user_id = user_id;
@@ -58,7 +58,7 @@ public class Order implements OrderDAO {
 		this.orderDate = orderDate;
 		this.totalAmount = totalAmount;
 	}
-	
+
 	/**
 	 * @param furniture_id
 	 * @param user_id
@@ -66,7 +66,8 @@ public class Order implements OrderDAO {
 	 * @param date
 	 * @param orderDate
 	 */
-	public Order(int furniture_id, int user_id, int quantity, long totalAmount) {
+	public Order(int furniture_id, int user_id, int quantity,
+			long totalAmount) {
 		this.furniture_id = furniture_id;
 		this.user_id = user_id;
 		this.quantity = quantity;
@@ -81,7 +82,8 @@ public class Order implements OrderDAO {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -95,7 +97,8 @@ public class Order implements OrderDAO {
 	}
 
 	/**
-	 * @param furniture_id the furniture_id to set
+	 * @param furniture_id
+	 *            the furniture_id to set
 	 */
 	public void setFurniture_id(int furniture_id) {
 		this.furniture_id = furniture_id;
@@ -109,7 +112,8 @@ public class Order implements OrderDAO {
 	}
 
 	/**
-	 * @param user_id the user_id to set
+	 * @param user_id
+	 *            the user_id to set
 	 */
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
@@ -123,7 +127,8 @@ public class Order implements OrderDAO {
 	}
 
 	/**
-	 * @param quantity the quantity to set
+	 * @param quantity
+	 *            the quantity to set
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
@@ -137,7 +142,8 @@ public class Order implements OrderDAO {
 	}
 
 	/**
-	 * @param orderDate the orderDate to set
+	 * @param orderDate
+	 *            the orderDate to set
 	 */
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
@@ -151,7 +157,8 @@ public class Order implements OrderDAO {
 	}
 
 	/**
-	 * @param totalAmount the totalAmount to set
+	 * @param totalAmount
+	 *            the totalAmount to set
 	 */
 	public void setTotalAmount(long totalAmount) {
 		this.totalAmount = totalAmount;

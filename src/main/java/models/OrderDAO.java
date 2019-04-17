@@ -39,7 +39,8 @@ public interface OrderDAO {
 	public int getId();
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id);
 
@@ -49,7 +50,8 @@ public interface OrderDAO {
 	public int getFurniture_id();
 
 	/**
-	 * @param furniture_id the furniture_id to set
+	 * @param furniture_id
+	 *            the furniture_id to set
 	 */
 	public void setFurniture_id(int furniture_id);
 
@@ -59,7 +61,8 @@ public interface OrderDAO {
 	public int getUser_id();
 
 	/**
-	 * @param user_id the user_id to set
+	 * @param user_id
+	 *            the user_id to set
 	 */
 	public void setUser_id(int user_id);
 
@@ -69,7 +72,8 @@ public interface OrderDAO {
 	public int getQuantity();
 
 	/**
-	 * @param quantity the quantity to set
+	 * @param quantity
+	 *            the quantity to set
 	 */
 	public void setQuantity(int quantity);
 
@@ -79,7 +83,8 @@ public interface OrderDAO {
 	public String getOrderDate();
 
 	/**
-	 * @param orderDate the orderDate to set
+	 * @param orderDate
+	 *            the orderDate to set
 	 */
 	public void setOrderDate(Date orderDate);
 
@@ -89,8 +94,9 @@ public interface OrderDAO {
 	public long getTotalAmount();
 
 	/**
-	 * @param totalAmount the totalAmount to set
+	 * @param totalAmount
+	 *            the totalAmount to set
 	 */
 	public void setTotalAmount(long totalAmount);
-	
+
 }

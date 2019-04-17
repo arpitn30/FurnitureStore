@@ -40,7 +40,8 @@ public interface FurnitureDAO {
 	public int getId();
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id);
 
@@ -50,7 +51,8 @@ public interface FurnitureDAO {
 	public String getName();
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name);
 
@@ -60,7 +62,8 @@ public interface FurnitureDAO {
 	public String getType();
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type);
 
@@ -70,7 +73,8 @@ public interface FurnitureDAO {
 	public String getRoom();
 
 	/**
-	 * @param room the room to set
+	 * @param room
+	 *            the room to set
 	 */
 	public void setRoom(String room);
 
@@ -80,7 +84,8 @@ public interface FurnitureDAO {
 	public int getPrice();
 
 	/**
-	 * @param price the price to set
+	 * @param price
+	 *            the price to set
 	 */
 	public void setPrice(int price);
 
@@ -90,7 +95,8 @@ public interface FurnitureDAO {
 	public String getImage();
 
 	/**
-	 * @param image the image to set
+	 * @param image
+	 *            the image to set
 	 */
 	public void setImage(String image);
 }
