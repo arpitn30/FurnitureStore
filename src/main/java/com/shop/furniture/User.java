@@ -202,6 +202,9 @@ public class User {
 	@GET
 	@Path("wallet")
 	public Response addBalance() throws URISyntaxException {
+		if (!Session.isSet())
+			return Response.seeOther(new URI("/login")).build();
+		
 		return Response.seeOther(new URI("../wallet.jsp")).build();
 
 	}
@@ -211,6 +214,9 @@ public class User {
 	public Response addBalance(@FormParam("user_id") int user_id,
 			@FormParam("addBalance") int addBalance)
 			throws ClassNotFoundException, SQLException, URISyntaxException {
+		if (!Session.isSet())
+			return Response.seeOther(new URI("/login")).build();
+		
 		JDBC db = new JDBC();
 		db.setConnection();
 		db.addBalance(user_id, addBalance);

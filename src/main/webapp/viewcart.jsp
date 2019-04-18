@@ -86,7 +86,7 @@
 <% if(!Local.getCart().isEmpty()) { %>
 <div class="col-md-8 offset-md-2" align="center">
 	<form action="shop/user/purchase">
-		<button class="btn btn-success rounded submit-button" type="submit" >Proceed to Buy</button>
+		<button class="btn btn-success rounded submit-button" type="submit" >Buy Now</button>
 	</form>
 </div><br>
 <% } %>

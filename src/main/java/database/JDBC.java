@@ -357,7 +357,7 @@ public class JDBC implements Database {
 	public ArrayList<Order> getOrders(int user_id) throws SQLException {
 		ArrayList<Order> pastOrders = new ArrayList<Order>();
 		String qry =
-				"SELECT * FROM `orders` WHERE `user_id` = " + user_id + ";";
+				"SELECT * FROM `orders` WHERE `user_id` = " + user_id + " ORDER BY `orderDate` DESC;";
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 
