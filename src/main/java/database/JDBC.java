@@ -76,8 +76,8 @@ public class JDBC implements Database {
 	 */
 	public User getUser(int user_id) throws SQLException {
 		User user = null;
-		String qry =
-				"SELECT * FROM `users` WHERE `user_id` = '" + user_id + "';";
+		String qry = "SELECT * FROM `users` WHERE `user_id` = '" + user_id
+				+ "';";
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 		while (rs.next())
@@ -115,10 +115,9 @@ public class JDBC implements Database {
 	 */
 	public void addUser(String name, String email, String password,
 			String secQues) throws SQLException {
-		String qry =
-				"INSERT INTO users (name, email, password, secQues) VALUES (?, ?, ?, ?);";
-		PreparedStatement st =
-				(PreparedStatement) connection.prepareStatement(qry);
+		String qry = "INSERT INTO users (name, email, password, secQues) VALUES (?, ?, ?, ?);";
+		PreparedStatement st = (PreparedStatement) connection
+				.prepareStatement(qry);
 		st.setString(1, name);
 		st.setString(2, email);
 		st.setString(3, password);
@@ -143,8 +142,8 @@ public class JDBC implements Database {
 	public void updatePassword(int user_id, String password)
 			throws SQLException {
 		String qry = "UPDATE `users` SET `password`=? WHERE `user_id`=?;";
-		PreparedStatement st =
-				(PreparedStatement) connection.prepareStatement(qry);
+		PreparedStatement st = (PreparedStatement) connection
+				.prepareStatement(qry);
 		st.setString(1, password);
 		st.setInt(2, user_id);
 		st.execute();
@@ -169,6 +168,23 @@ public class JDBC implements Database {
 	}
 
 	/**
+	 * Set balance in the database for the given user_id
+	 * 
+	 * @param user_id
+	 * @param balance
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean setBalance(int user_id, long balance) throws SQLException {
+		String qry = "UPDATE `wallet` SET `balance`=? WHERE `user_id`=?;";
+		PreparedStatement st = (PreparedStatement) connection
+				.prepareStatement(qry);
+		st.setLong(1, balance);
+		st.setInt(2, user_id);
+		return st.execute();
+	}
+
+	/**
 	 * Update balance in the database for the given user_id
 	 * 
 	 * @param user_id
@@ -180,8 +196,8 @@ public class JDBC implements Database {
 		balance += this.getBalance(user_id);
 
 		String qry = "UPDATE `wallet` SET `balance`=? WHERE `user_id`=?;";
-		PreparedStatement st =
-				(PreparedStatement) connection.prepareStatement(qry);
+		PreparedStatement st = (PreparedStatement) connection
+				.prepareStatement(qry);
 		st.setLong(1, balance);
 		st.setInt(2, user_id);
 		return st.execute();
@@ -224,10 +240,9 @@ public class JDBC implements Database {
 		ArrayList<Furniture> list = new ArrayList<Furniture>();
 		int pricemin = Integer.parseInt(min);
 		int pricemax = Integer.parseInt(max);
-		String qry =
-				"SELECT * FROM `furniture` WHERE `name` LIKE ? AND `type` LIKE ? AND `room` LIKE ? AND `price` >= ? AND `price` <= ?;";
-		PreparedStatement st =
-				(PreparedStatement) connection.prepareStatement(qry);
+		String qry = "SELECT * FROM `furniture` WHERE `name` LIKE ? AND `type` LIKE ? AND `room` LIKE ? AND `price` >= ? AND `price` <= ?;";
+		PreparedStatement st = (PreparedStatement) connection
+				.prepareStatement(qry);
 
 		st.setString(1, "%" + name + "%");
 		st.setString(2, "%" + type + "%");
@@ -254,8 +269,8 @@ public class JDBC implements Database {
 	 */
 	public Furniture getFurniture(int fid) throws SQLException {
 		Furniture fur = null;
-		String qry =
-				"SELECT * FROM `furniture` WHERE `furniture_id` = " + fid + ";";
+		String qry = "SELECT * FROM `furniture` WHERE `furniture_id` = " + fid
+				+ ";";
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 		while (rs.next())
@@ -276,10 +291,9 @@ public class JDBC implements Database {
 	 */
 	public boolean addFurniture(String name, String type, String room,
 			int price) throws SQLException {
-		String qry =
-				"INSERT INTO `furniture` (`name`, `type`, `room`, `price`) VALUES (?, ?, ?, ?);";
-		PreparedStatement st =
-				(PreparedStatement) connection.prepareStatement(qry);
+		String qry = "INSERT INTO `furniture` (`name`, `type`, `room`, `price`) VALUES (?, ?, ?, ?);";
+		PreparedStatement st = (PreparedStatement) connection
+				.prepareStatement(qry);
 
 		st.setString(1, name);
 		st.setString(2, type);
@@ -298,8 +312,8 @@ public class JDBC implements Database {
 	 */
 	public boolean deleteFurniture(int fid) throws SQLException {
 		String qry = "DELETE FROM `furniture` WHERE `furniture_id`=?";
-		PreparedStatement st =
-				(PreparedStatement) connection.prepareStatement(qry);
+		PreparedStatement st = (PreparedStatement) connection
+				.prepareStatement(qry);
 		st.setInt(1, fid);
 		return st.execute();
 	}
@@ -317,10 +331,9 @@ public class JDBC implements Database {
 	 */
 	public boolean editFurniture(int fid, String name, String type, String room,
 			int price) throws SQLException {
-		String qry =
-				"UPDATE `furniture` SET `name`=?, `type`=?, `room`=?, `price`=? WHERE `furniture_id`=?;";
-		PreparedStatement st =
-				(PreparedStatement) connection.prepareStatement(qry);
+		String qry = "UPDATE `furniture` SET `name`=?, `type`=?, `room`=?, `price`=? WHERE `furniture_id`=?;";
+		PreparedStatement st = (PreparedStatement) connection
+				.prepareStatement(qry);
 
 		st.setString(1, name);
 		st.setString(2, type);
@@ -356,8 +369,8 @@ public class JDBC implements Database {
 	 */
 	public ArrayList<Order> getOrders(int user_id) throws SQLException {
 		ArrayList<Order> pastOrders = new ArrayList<Order>();
-		String qry =
-				"SELECT * FROM `orders` WHERE `user_id` = " + user_id + " ORDER BY `orderDate` DESC;";
+		String qry = "SELECT * FROM `orders` WHERE `user_id` = " + user_id
+				+ " ORDER BY `orderDate` DESC;";
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 
@@ -383,10 +396,9 @@ public class JDBC implements Database {
 	 */
 	public boolean addOrder(int furnitureId, int userId, int quantity,
 			long totalAmount) throws SQLException {
-		String qry =
-				"INSERT INTO `orders` (`furniture_id`, `user_id`, `quantity` , `totalAmount`) VALUES (?, ?, ?, ?);";
-		PreparedStatement st =
-				(PreparedStatement) connection.prepareStatement(qry);
+		String qry = "INSERT INTO `orders` (`furniture_id`, `user_id`, `quantity` , `totalAmount`) VALUES (?, ?, ?, ?);";
+		PreparedStatement st = (PreparedStatement) connection
+				.prepareStatement(qry);
 
 		st.setInt(1, furnitureId);
 		st.setInt(2, userId);
@@ -403,8 +415,7 @@ public class JDBC implements Database {
 	 */
 	public ArrayList<String> getTypes() throws SQLException {
 		ArrayList<String> list = new ArrayList<String>();
-		String qry =
-				"SELECT DISTINCT `type` FROM `furniture`ORDER BY `type` ASC;";
+		String qry = "SELECT DISTINCT `type` FROM `furniture`ORDER BY `type` ASC;";
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 
@@ -423,8 +434,7 @@ public class JDBC implements Database {
 	 */
 	public ArrayList<String> getRooms() throws SQLException {
 		ArrayList<String> list = new ArrayList<String>();
-		String qry =
-				"SELECT DISTINCT `room` FROM `furniture`ORDER BY `room` ASC;";
+		String qry = "SELECT DISTINCT `room` FROM `furniture`ORDER BY `room` ASC;";
 		Statement statement = (Statement) connection.createStatement();
 		ResultSet rs = statement.executeQuery(qry);
 

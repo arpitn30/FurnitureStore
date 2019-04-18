@@ -35,13 +35,13 @@ import org.junit.Test;
  *
  */
 public class TestCart {
-	
+
 	@Test
 	public void testAddToCart() {
 		Local.addToCart(1, 1, 5, 5000);
 		assertEquals(1, Local.getCart().get(0).getUser_id());
 	}
-	
+
 	@Test
 	public void testDeleteFromCart() {
 		Local.addToCart(1, 1, 5, 5000);
@@ -49,12 +49,12 @@ public class TestCart {
 		Local.deleteFromCart(2);
 		assertEquals(1, Local.getCart().size());
 	}
-	
+
 	@Test
 	public void testClearCart() {
 		Local.addToCart(1, 1, 5, 5000);
 		Local.addToCart(2, 1, 3, 30000);
 		Local.clearCart();
 		assertTrue(Local.getCart().isEmpty());
-	}	
+	}
 }

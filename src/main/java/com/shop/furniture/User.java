@@ -204,7 +204,7 @@ public class User {
 	public Response addBalance() throws URISyntaxException {
 		if (!Session.isSet())
 			return Response.seeOther(new URI("/login")).build();
-		
+
 		return Response.seeOther(new URI("../wallet.jsp")).build();
 
 	}
@@ -216,7 +216,7 @@ public class User {
 			throws ClassNotFoundException, SQLException, URISyntaxException {
 		if (!Session.isSet())
 			return Response.seeOther(new URI("/login")).build();
-		
+
 		JDBC db = new JDBC();
 		db.setConnection();
 		db.addBalance(user_id, addBalance);

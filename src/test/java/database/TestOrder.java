@@ -6,7 +6,7 @@ utilization of this source code in whole or in part is  prohibited without
  written consent from
 Aricent Altran Group
 
-	  File Name	          	    : TestUser.java
+	  File Name	          	    : TestOrder.java
 	  Principal Author      	: 
 	  Subsystem Name       	    :
 	  Module Name           	: database
@@ -18,7 +18,7 @@ Aricent Altran Group
 	  Change History
 
 	  Version      				: 1.0
-	  Date(DD/MM/YYYY) 			: Apr 17, 2019
+	  Date(DD/MM/YYYY) 			: Apr 18, 2019
 	  Modified by				: 
 	  Description of change 	:
 
@@ -26,15 +26,19 @@ Aricent Altran Group
 package database;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import models.Order;
 
-public class TestUser {
+public class TestOrder {
+
 	static JDBC db;
 
 	@BeforeClass
@@ -47,41 +51,25 @@ public class TestUser {
 	public static void close() {
 		db.closeConnection();
 	}
-
+	
 	@Test
-	public void testGetUser() throws SQLException {
-		assertEquals("Arpit", db.getUser(1).getName());
-	}
-
-	@Test
-	public void testGetUser2() throws SQLException {
-		assertEquals("gagan", db.getUser("gagan@altran.com").getSecQues());
-	}
-
-	@Test(expected = SQLException.class)
-	public void testAddUser() throws SQLException {
-		db.addUser("Vanessa", "vv@altran.com", "passsword", "amrutha");
-		int user_id = db.getUser("vv@altran.com").getId();
-		assertEquals(0, db.getBalance(user_id));
+	public void testAddOrder() throws SQLException {
+		db.addOrder(1, 1, 2, 24000);
+		ArrayList<Order> list = db.getOrders(1);
+		assertEquals(2, list.get(0).getQuantity());
 	}
 
 	@Test
-	public void testUpdatePassword() throws SQLException {
-		db.updatePassword(2, "123456");
-		assertEquals("123456", db.getUser(2).getPassword());
+	public void testGetTypes() throws SQLException {
+
+		ArrayList<String> list = db.getTypes();
+		assertTrue(list.contains("Bed"));
 	}
 
 	@Test
-	public void testGetBalance() throws SQLException {
-		db.setBalance(5, 100);
-		assertEquals(100, db.getBalance(5));
-	}
+	public void testGetRooms() throws SQLException {
 
-	@Test
-	public void testAddBalance() throws SQLException {
-		db.setBalance(5, 0);
-		db.addBalance(5, 100);
-		assertEquals(100, db.getBalance(5));
+		ArrayList<String> list = db.getRooms();
+		assertTrue(list.contains("Bed"));
 	}
-
 }
