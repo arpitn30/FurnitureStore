@@ -81,9 +81,10 @@ public interface Database {
 	 * 
 	 * @param user_id
 	 * @param password
+	 * @return 
 	 * @throws SQLException
 	 */
-	public void updatePassword(int user_id, String password)
+	public int updatePassword(int user_id, String password)
 			throws SQLException;
 
 	/**
@@ -96,6 +97,16 @@ public interface Database {
 	public long getBalance(int user_id) throws SQLException;
 
 	/**
+	 * Set balance in the database for the given user_id
+	 * 
+	 * @param user_id
+	 * @param balance
+	 * @return
+	 * @throws SQLException
+	 */
+	public int setBalance(int user_id, long balance) throws SQLException;
+	
+	/**
 	 * Update balance in the database for the given user_id
 	 * 
 	 * @param user_id
@@ -103,7 +114,7 @@ public interface Database {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean addBalance(int user_id, long balance) throws SQLException;
+	public int addBalance(int user_id, long balance) throws SQLException;
 
 	/**
 	 * Get details of all the furniture from the database

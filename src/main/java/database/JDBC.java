@@ -137,14 +137,14 @@ public class JDBC implements Database {
 	 * @param password
 	 * @throws SQLException
 	 */
-	public void updatePassword(int user_id, String password)
+	public int updatePassword(int user_id, String password)
 			throws SQLException {
 		String qry = "UPDATE `users` SET `password`=? WHERE `user_id`=?;";
 		PreparedStatement st = (PreparedStatement) connection
 				.prepareStatement(qry);
 		st.setString(1, password);
 		st.setInt(2, user_id);
-		st.execute();
+		return st.executeUpdate();
 	}
 
 	/**
@@ -173,13 +173,13 @@ public class JDBC implements Database {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean setBalance(int user_id, long balance) throws SQLException {
+	public int setBalance(int user_id, long balance) throws SQLException {
 		String qry = "UPDATE `wallet` SET `balance`=? WHERE `user_id`=?;";
 		PreparedStatement st = (PreparedStatement) connection
 				.prepareStatement(qry);
 		st.setLong(1, balance);
 		st.setInt(2, user_id);
-		return st.execute();
+		return st.executeUpdate();
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class JDBC implements Database {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean addBalance(int user_id, long balance) throws SQLException {
+	public int addBalance(int user_id, long balance) throws SQLException {
 		balance += this.getBalance(user_id);
 
 		String qry = "UPDATE `wallet` SET `balance`=? WHERE `user_id`=?;";
@@ -198,7 +198,7 @@ public class JDBC implements Database {
 				.prepareStatement(qry);
 		st.setLong(1, balance);
 		st.setInt(2, user_id);
-		return st.execute();
+		return st.executeUpdate();
 	}
 
 	/**

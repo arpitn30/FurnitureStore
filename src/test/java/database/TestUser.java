@@ -57,6 +57,11 @@ public class TestUser {
 	public void testGetUser2() throws SQLException {
 		assertEquals("gagan", db.getUser("gagan@altran.com").getSecQues());
 	}
+	
+	@Test
+	public void testGetUser3() throws SQLException {
+		assertEquals(null, db.getUser("nonexistant@altran.com"));
+	}
 
 	@Test(expected = SQLException.class)
 	public void testAddUser() throws SQLException {
@@ -67,21 +72,12 @@ public class TestUser {
 
 	@Test
 	public void testUpdatePassword() throws SQLException {
-		db.updatePassword(2, "123456");
+		assertEquals(1, db.updatePassword(2, "123456"));
 		assertEquals("123456", db.getUser(2).getPassword());
 	}
-
+	
 	@Test
-	public void testGetBalance() throws SQLException {
-		db.setBalance(5, 100);
-		assertEquals(100, db.getBalance(5));
+	public void testUpdatePassword2() throws SQLException {
+		assertEquals(0, db.updatePassword(2, ""));
 	}
-
-	@Test
-	public void testAddBalance() throws SQLException {
-		db.setBalance(5, 0);
-		db.addBalance(5, 100);
-		assertEquals(100, db.getBalance(5));
-	}
-
 }
