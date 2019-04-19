@@ -287,7 +287,7 @@ public class JDBC implements Database {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean addFurniture(String name, String type, String room,
+	public int addFurniture(String name, String type, String room,
 			int price) throws SQLException {
 		String qry = "INSERT INTO `furniture` (`name`, `type`, `room`, `price`) VALUES (?, ?, ?, ?);";
 		PreparedStatement st = (PreparedStatement) connection
@@ -298,7 +298,7 @@ public class JDBC implements Database {
 		st.setString(3, room);
 		st.setInt(4, price);
 
-		return st.execute();
+		return st.executeUpdate();
 	}
 
 	/**
@@ -327,7 +327,7 @@ public class JDBC implements Database {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean editFurniture(int fid, String name, String type, String room,
+	public int editFurniture(int fid, String name, String type, String room,
 			int price) throws SQLException {
 		String qry = "UPDATE `furniture` SET `name`=?, `type`=?, `room`=?, `price`=? WHERE `furniture_id`=?;";
 		PreparedStatement st = (PreparedStatement) connection
@@ -338,7 +338,7 @@ public class JDBC implements Database {
 		st.setString(3, room);
 		st.setInt(4, price);
 		st.setInt(5, fid);
-		return st.execute();
+		return st.executeUpdate();
 	}
 
 	/**

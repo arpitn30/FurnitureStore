@@ -157,7 +157,7 @@ public interface Database {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean addFurniture(String name, String type, String room,
+	public int addFurniture(String name, String type, String room,
 			int price) throws SQLException;
 
 	/**
@@ -180,7 +180,7 @@ public interface Database {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean editFurniture(int fid, String name, String type, String room,
+	public int editFurniture(int fid, String name, String type, String room,
 			int price) throws SQLException;
 
 	/**

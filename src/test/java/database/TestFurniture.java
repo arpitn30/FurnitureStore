@@ -59,9 +59,16 @@ public class TestFurniture {
 				Integer.toString(Integer.MAX_VALUE));
 		assertEquals("Bed", list.get(0).getType());
 	}
-
+	
 	@Test
 	public void testGetFurniture2() throws SQLException {
+		ArrayList<Furniture> list = db.getFurniture("", "Gaming", "", "0",
+				Integer.toString(Integer.MAX_VALUE));
+		assertTrue(list.isEmpty());
+	}
+
+	@Test
+	public void testGetFurniture3() throws SQLException {
 		assertEquals("SportsCar Bed", db.getFurniture(1).getName());
 	}
 
@@ -86,16 +93,11 @@ public class TestFurniture {
 	public void testDeleteFurniture() throws SQLException {
 		assertFalse(db.deleteFurniture(0));
 	}
-
+	
 	@Test
 	public void testEditFurniture() throws SQLException {
-		try {
-			db.addFurniture("Plastic Chair", "Chair", "Kids", 10000);
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
-		db.editFurniture(9, "Plastic Kursi", "Chair", "Kids", 10000);
-		assertEquals("Plastic Kursi", db.getFurniture(9).getName());
+		assertEquals(0, db.editFurniture(
+				-1, "Plastic Kursi", "Chair", "Kids", 10000));
 	}
 
 	@Test
