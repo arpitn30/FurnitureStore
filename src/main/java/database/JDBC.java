@@ -28,7 +28,6 @@ package database;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Savepoint;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
@@ -45,8 +44,7 @@ import models.User;
  */
 public class JDBC implements Database {
 
-	Connection connection;
-	Savepoint svpt;
+	private Connection connection;
 
 	/**
 	 * Set Up a connection with the database through MySQL Driver
@@ -427,7 +425,7 @@ public class JDBC implements Database {
 	}
 
 	/**
-	 * Get all the rooms of the furnitures from the database
+	 * Get all the rooms of the furniture from the database
 	 * 
 	 * @return
 	 * @throws SQLException

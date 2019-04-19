@@ -110,14 +110,17 @@ public class Admin {
 			return Response.seeOther(new URI("admin/login")).build();
 
 		JDBC db = new JDBC();
-		db.setConnection();
-		if (db.checkFurniture(name))
-			return Response
-					.seeOther(new URI("../addFurniture.jsp?status=exists"))
-					.build();
-
-		db.addFurniture(name, type, room, price);
-
+		try {
+			db.setConnection();
+			if (db.checkFurniture(name))
+				return Response
+						.seeOther(new URI("../addFurniture.jsp?status=exists"))
+						.build();
+			db.addFurniture(name, type, room, price);
+			db.closeConnection();
+		} finally {
+			db.closeConnection();
+		}
 		return Response.seeOther(new URI("admin/home?status=added")).build();
 	}
 
@@ -146,9 +149,13 @@ public class Admin {
 
 		else {
 			JDBC db = new JDBC();
-			db.setConnection();
-
-			db.editFurniture(fid, name, type, room, price);
+			try {
+				db.setConnection();
+				db.editFurniture(fid, name, type, room, price);
+				db.closeConnection();
+			} finally {
+				db.closeConnection();
+			}
 		}
 		return Response.seeOther(new URI("admin/")).build();
 	}
@@ -161,8 +168,13 @@ public class Admin {
 			return Response.seeOther(new URI("admin/login")).build();
 
 		JDBC db = new JDBC();
-		db.setConnection();
-		db.deleteFurniture(fid);
+		try {
+			db.setConnection();
+			db.deleteFurniture(fid);
+			db.closeConnection();
+		} finally {
+			db.closeConnection();
+		}
 		return Response.seeOther(new URI("admin/")).build();
 	}
 

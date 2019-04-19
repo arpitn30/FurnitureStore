@@ -78,8 +78,14 @@ public class Main {
 			@FormParam("password") String pass)
 			throws ClassNotFoundException, SQLException, URISyntaxException {
 		JDBC db = new JDBC();
-		db.setConnection();
-		User user = db.getUser(email);
+		User user = null;
+		try {
+			db.setConnection();
+			user = db.getUser(email);
+			db.closeConnection();
+		} finally {
+			db.closeConnection();
+		}
 		if (user == null)
 			return Response.seeOther(new URI("../login.jsp?status=false"))
 					.build();
@@ -107,18 +113,22 @@ public class Main {
 			@FormParam("secQues") String secQues)
 			throws ClassNotFoundException, SQLException, URISyntaxException {
 		JDBC db = new JDBC();
-		db.setConnection();
-		User user = db.getUser(email);
-		if (user != null)
-			return Response.seeOther(new URI("../register.jsp?status=exists"))
-					.build();
-
-		if (!pass.equals(pass2))
-			return Response.seeOther(new URI("../register.jsp?status=mismatch"))
-					.build();
-
-		db.addUser(name, email, pass, secQues);
-
+		try {
+			db.setConnection();
+			User user = db.getUser(email);
+			if (user != null)
+				return Response
+						.seeOther(new URI("../register.jsp?status=exists"))
+						.build();
+			if (!pass.equals(pass2))
+				return Response
+						.seeOther(new URI("../register.jsp?status=mismatch"))
+						.build();
+			db.addUser(name, email, pass, secQues);
+			db.closeConnection();
+		} finally {
+			db.closeConnection();
+		}
 		return Response.seeOther(new URI("../login.jsp?status=true")).build();
 	}
 
@@ -148,19 +158,23 @@ public class Main {
 					.build();
 
 		JDBC db = new JDBC();
-		db.setConnection();
-		User user = db.getUser(email);
-		if (user == null)
-			return Response
-					.seeOther(new URI("../forgotpass.jsp?status=notexists"))
-					.build();
-
-		if (!user.getSecQues().equalsIgnoreCase(secQues))
-			return Response
-					.seeOther(new URI("../forgotpass.jsp?status=incorrect"))
-					.build();
-
-		db.updatePassword(user.getId(), pass);
+		User user = null;
+		try {
+			db.setConnection();
+			user = db.getUser(email);
+			if (user == null)
+				return Response
+						.seeOther(new URI("../forgotpass.jsp?status=notexists"))
+						.build();
+			if (!user.getSecQues().equalsIgnoreCase(secQues))
+				return Response
+						.seeOther(new URI("../forgotpass.jsp?status=incorrect"))
+						.build();
+			db.updatePassword(user.getId(), pass);
+			db.closeConnection();
+		} finally {
+			db.closeConnection();
+		}
 		return Response.seeOther(new URI("../login.jsp?status=password"))
 				.build();
 	}
@@ -181,10 +195,14 @@ public class Main {
 			type = search;
 		else if ((category.equals("rooms")))
 			room = search;
-		return Response.seeOther(
-				new URI("../index.jsp?name=" + name + "&type=" + type + "&room="
-						+ room + "&min=" + minPrice + "&max=" + maxPrice))
-				.build();
+		if(Session.isAdmin())
+			return Response.seeOther(new URI("../adminindex.jsp?name=" + 
+				name + "&type=" + type + "&room=" + room +"&min=" + minPrice +
+				"&max=" + maxPrice)).build();
+		else
+			return Response.seeOther(new URI(
+			   "../index.jsp?name=" + name + "&type=" + type + "&room="+ room +
+					"&min=" + minPrice + "&max=" + maxPrice)).build();
 	}
 
 	@POST
@@ -204,9 +222,13 @@ public class Main {
 		if (maxPrice.equals("") || maxPrice == null)
 			maxPrice = Integer.toString(Integer.MAX_VALUE);
 
-		return Response
-				.seeOther(new URI("../index.jsp?name=&type=" + type + "&room="
-						+ room + "&min=" + minPrice + "&max=" + maxPrice))
-				.build();
+		if(Session.isAdmin())
+			return Response.seeOther(new URI(
+					"../adminindex.jsp?name=&type=" + type + "&room=" + room +
+					"&min=" + minPrice + "&max=" + maxPrice)).build();
+		else
+			return Response.seeOther(new URI(
+					"../index.jsp?name=&type=" + type + "&room=" + room + 
+					"&min=" + minPrice + "&max=" + maxPrice)).build();
 	}
 }

@@ -77,14 +77,17 @@ public class User {
 					.build();
 
 		JDBC db = new JDBC();
-		db.setConnection();
-		if (!db.getUser(Session.getId()).getPassword().equals(oldpass))
-			return Response
-					.seeOther(new URI("../changepass.jsp?status=incorrect"))
-					.build();
-		db.updatePassword(Session.getId(), newpass);
-		db.closeConnection();
-
+		try {
+			db.setConnection();
+			if (!db.getUser(Session.getId()).getPassword().equals(oldpass))
+				return Response
+						.seeOther(new URI("../changepass.jsp?status=incorrect"))
+						.build();
+			db.updatePassword(Session.getId(), newpass);
+			db.closeConnection();
+		} finally {
+			db.closeConnection();
+		}
 		return Response.seeOther(new URI("../changepass.jsp?status=true"))
 				.build();
 	}
@@ -109,9 +112,14 @@ public class User {
 			return Response.seeOther(new URI("/home?status=false")).build();
 		}
 		JDBC db = new JDBC();
-		db.setConnection();
-		long totalAmount = db.getFurniture(fid).getPrice() * quantity;
-		db.closeConnection();
+		long totalAmount;
+		try {
+			db.setConnection();
+			totalAmount = db.getFurniture(fid).getPrice() * quantity;
+			db.closeConnection();
+		} finally {
+			db.closeConnection();
+		}
 		Local.addToCart(fid, Session.getId(), quantity, totalAmount);
 		return Response.seeOther(new URI("/home?status=added")).build();
 	}
@@ -129,9 +137,14 @@ public class User {
 					.build();
 
 		JDBC db = new JDBC();
-		db.setConnection();
-		long totalAmount = db.getFurniture(fid).getPrice() * quantity;
-		db.closeConnection();
+		long totalAmount;
+		try {
+			db.setConnection();
+			totalAmount = db.getFurniture(fid).getPrice() * quantity;
+			db.closeConnection();
+		} finally {
+			db.closeConnection();
+		}
 		Local.editCart(fid, quantity, totalAmount);
 		return Response.seeOther(new URI("user/viewCart")).build();
 	}
@@ -168,24 +181,26 @@ public class User {
 			return Response.seeOther(new URI("/login")).build();
 
 		JDBC db = new JDBC();
-		db.setConnection();
-
-		long cost = 0;
-		for (Order item : Local.getCart()) {
-			cost += item.getTotalAmount();
+		try {
+			db.setConnection();
+			long cost = 0;
+			for (Order item : Local.getCart()) {
+				cost += item.getTotalAmount();
+			}
+			if (cost > db.getBalance(Session.getId()))
+				return Response
+						.seeOther(new URI("../viewcart.jsp?status=lowbalance"))
+						.build();
+			for (Order item : Local.getCart()) {
+				db.addOrder(item.getFurniture_id(), item.getUser_id(),
+						item.getQuantity(), item.getTotalAmount());
+				db.addBalance(Session.getId(), (-1 * item.getTotalAmount()));
+			}
+			db.closeConnection();
+			Local.clearCart();
+		} finally {
+			db.closeConnection();
 		}
-		if (cost > db.getBalance(Session.getId()))
-			return Response
-					.seeOther(new URI("../viewcart.jsp?status=lowbalance"))
-					.build();
-
-		for (Order item : Local.getCart()) {
-			db.addOrder(item.getFurniture_id(), item.getUser_id(),
-					item.getQuantity(), item.getTotalAmount());
-			db.addBalance(Session.getId(), (-1 * item.getTotalAmount()));
-		}
-		db.closeConnection();
-		Local.clearCart();
 		return Response.seeOther(new URI("../vieworders.jsp?status=success"))
 				.build();
 	}
@@ -218,9 +233,13 @@ public class User {
 			return Response.seeOther(new URI("/login")).build();
 
 		JDBC db = new JDBC();
-		db.setConnection();
-		db.addBalance(user_id, addBalance);
-		db.closeConnection();
+		try {
+			db.setConnection();
+			db.addBalance(user_id, addBalance);
+			db.closeConnection();
+		} finally {
+			db.closeConnection();
+		}
 		return Response.seeOther(new URI("user/wallet")).build();
 
 	}

@@ -34,13 +34,13 @@ import java.util.Date;
  */
 public class Order implements OrderDAO {
 
-	int id;
-	int furniture_id;
-	int user_id;
-	int quantity;
-	Date orderDate;
-	long totalAmount;
-	SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+	private int id;
+	private int furniture_id;
+	private int user_id;
+	private int quantity;
+	private Date orderDate;
+	private long totalAmount;
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
 
 	/**
 	 * @param id

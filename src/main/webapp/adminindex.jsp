@@ -50,7 +50,11 @@
     	<%
     		JDBC db = new JDBC();
 			db.setConnection();
-			ArrayList<Furniture> data = db.getFurniture();
+			ArrayList<Furniture> data;
+			if(request.getParameter("name") == null)
+				data = db.getFurniture();
+			else
+				data = db.getFurniture(request.getParameter("name"), request.getParameter("type"), request.getParameter("room"), request.getParameter("min"), request.getParameter("max"));
 			db.closeConnection();
         	for(Furniture fur: data){
         %> 
