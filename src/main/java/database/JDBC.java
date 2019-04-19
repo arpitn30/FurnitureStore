@@ -392,7 +392,7 @@ public class JDBC implements Database {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean addOrder(int furnitureId, int userId, int quantity,
+	public int addOrder(int furnitureId, int userId, int quantity,
 			long totalAmount) throws SQLException {
 		String qry = "INSERT INTO `orders` (`furniture_id`, `user_id`, `quantity` , `totalAmount`) VALUES (?, ?, ?, ?);";
 		PreparedStatement st = (PreparedStatement) connection
@@ -402,7 +402,7 @@ public class JDBC implements Database {
 		st.setInt(2, userId);
 		st.setInt(3, quantity);
 		st.setLong(4, totalAmount);
-		return st.execute();
+		return st.executeUpdate();
 	}
 
 	/**

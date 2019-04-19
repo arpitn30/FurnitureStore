@@ -58,6 +58,11 @@ public class TestOrder {
 		ArrayList<Order> list = db.getOrders(1);
 		assertEquals(2, list.get(0).getQuantity());
 	}
+	
+	@Test
+	public void testAddOrder2() throws SQLException {
+		assertEquals(0, db.addOrder(1, 1, -2, -24000));
+	}
 
 	@Test
 	public void testGetTypes() throws SQLException {

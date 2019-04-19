@@ -213,7 +213,7 @@ public interface Database {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean addOrder(int furnitureId, int userId, int quantity,
+	public int addOrder(int furnitureId, int userId, int quantity,
 			long totalAmount) throws SQLException;
 
 	/**
