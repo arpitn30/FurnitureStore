@@ -139,6 +139,8 @@ public class JDBC implements Database {
 	 */
 	public int updatePassword(int user_id, String password)
 			throws SQLException {
+		if(password.equals(""))
+			return 0;
 		String qry = "UPDATE `users` SET `password`=? WHERE `user_id`=?;";
 		PreparedStatement st = (PreparedStatement) connection
 				.prepareStatement(qry);
@@ -174,6 +176,8 @@ public class JDBC implements Database {
 	 * @throws SQLException
 	 */
 	public int setBalance(int user_id, long balance) throws SQLException {
+		if(balance < 0)
+			return 0;
 		String qry = "UPDATE `wallet` SET `balance`=? WHERE `user_id`=?;";
 		PreparedStatement st = (PreparedStatement) connection
 				.prepareStatement(qry);
@@ -191,6 +195,8 @@ public class JDBC implements Database {
 	 * @throws SQLException
 	 */
 	public int addBalance(int user_id, long balance) throws SQLException {
+		if(balance < 0)
+			return 0;
 		balance += this.getBalance(user_id);
 
 		String qry = "UPDATE `wallet` SET `balance`=? WHERE `user_id`=?;";
@@ -394,6 +400,8 @@ public class JDBC implements Database {
 	 */
 	public int addOrder(int furnitureId, int userId, int quantity,
 			long totalAmount) throws SQLException {
+		if(quantity <= 0 || totalAmount <= 0)
+			return 0;
 		String qry = "INSERT INTO `orders` (`furniture_id`, `user_id`, `quantity` , `totalAmount`) VALUES (?, ?, ?, ?);";
 		PreparedStatement st = (PreparedStatement) connection
 				.prepareStatement(qry);

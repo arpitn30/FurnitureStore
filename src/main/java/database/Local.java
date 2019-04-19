@@ -63,6 +63,8 @@ public class Local {
 	 */
 	public static void addToCart(int furniture_id, int user_id, int quantity,
 			long totalAmount) {
+		if(quantity <= 0 || totalAmount <= 0)
+			return ;
 		Iterator<Order> itr = cart.iterator();
 		while (itr.hasNext()) {
 			Order item = itr.next();
@@ -97,6 +99,8 @@ public class Local {
 	 */
 	public static void editCart(int furniture_id, int quantity,
 			long totalAmount) {
+		if(quantity <= 0 || totalAmount <= 0)
+			return ;
 		Iterator<Order> itr = cart.iterator();
 		while (itr.hasNext()) {
 			Order item = itr.next();
