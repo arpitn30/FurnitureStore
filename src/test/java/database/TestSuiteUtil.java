@@ -30,7 +30,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({TestCart.class, TestUser.class, TestFurniture.class, TestOrder.class})
+@SuiteClasses({TestCart.class, TestUser.class, TestBalance.class, TestFurniture.class, TestOrder.class})
 
 public class TestSuiteUtil {
 
