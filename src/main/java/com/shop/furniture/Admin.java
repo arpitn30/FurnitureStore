@@ -50,165 +50,260 @@ public class Admin {
 	private static String PASS = "superuser";
 
 	@GET
-	public Response homepage() throws URISyntaxException {
-		if (Session.isAdmin())
-			return Response.seeOther(new URI("../adminindex.jsp")).build();
-		else
-			return Response.seeOther(new URI("../adminlogin.jsp")).build();
+	public Response homepage() {
+		try {
+			if (Session.isAdmin())
+				return Response.seeOther(new URI("../adminindex.jsp")).build();
+			else
+				return Response.seeOther(new URI("../adminlogin.jsp"))
+						.build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
+					.build();
+		}
 	}
 
 	@GET
 	@Path("home")
-	public Response homepage(@QueryParam("status") String status)
-			throws URISyntaxException {
-		if (Session.isAdmin())
-			return Response
-					.seeOther(new URI("../adminindex.jsp?status=" + status))
+	public Response homepage(@QueryParam("status") String status) {
+		try {
+			if (Session.isAdmin())
+				return Response
+						.seeOther(new URI("../adminindex.jsp?status=" + status))
+						.build();
+			else
+				return Response.seeOther(new URI("../adminlogin.jsp"))
+						.build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
 					.build();
-		else
-			return Response.seeOther(new URI("../adminlogin.jsp")).build();
+		}
 	}
 
 	@GET
 	@Path("/login")
-	public Response login() throws URISyntaxException {
-		return Response.seeOther(new URI("../adminlogin.jsp")).build();
+	public Response login() {
+		try {
+			return Response.seeOther(new URI("../adminlogin.jsp")).build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
+					.build();
+		}
 	}
 
 	@POST
 	@Path("/login")
 	public Response login(@FormParam("email") String email,
-			@FormParam("password") String pass)
-			throws ClassNotFoundException, SQLException, URISyntaxException {
-
-		if (USER.equals(email) && PASS.equals(pass)) {
-			Session.setId(0);
-			Session.setName("Admin");
-			return Response.seeOther(new URI("admin/")).build();
+			@FormParam("password") String pass) {
+		try {
+			if (USER.equals(email) && PASS.equals(pass)) {
+				Session.setId(0);
+				Session.setName("Admin");
+				return Response.seeOther(new URI("admin/")).build();
+			}
+			return Response.seeOther(new URI("../adminlogin.jsp?status=false"))
+					.build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
+					.build();
 		}
-
-		return Response.seeOther(new URI("../adminlogin.jsp?status=false"))
-				.build();
+		catch(Exception e) {
+			System.out.println(e);
+			return Response.status(500)
+					.entity("Error 500: Internal Server Error").build();
+		}
 	}
 
 	@GET
 	@Path("/addFurniture")
-	public Response addFurniture() throws URISyntaxException {
-		if (!Session.isAdmin())
-			return Response.seeOther(new URI("admin/login")).build();
-
-		return Response.seeOther(new URI("../addFurniture.jsp")).build();
+	public Response addFurniture() {
+		try {
+			if (!Session.isAdmin())
+				return Response.seeOther(new URI("admin/login")).build();
+			return Response.seeOther(new URI("../addFurniture.jsp"))
+					.build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
+					.build();
+		}
 	}
 
 	@POST
 	@Path("/addFurniture")
 	public Response addFurniture(@FormParam("name") String name,
 			@FormParam("type") String type, @FormParam("room") String room,
-			@FormParam("price") int price)
-			throws ClassNotFoundException, SQLException, URISyntaxException {
-		if (!Session.isAdmin())
-			return Response.seeOther(new URI("admin/login")).build();
+			@FormParam("price") int price) {
+		try {
+			if (!Session.isAdmin())
+				return Response.seeOther(new URI("admin/login")).build();
 
 		JDBC db = new JDBC();
-		try {
-			db.setConnection();
-			if (db.checkFurniture(name))
-				return Response
+			try {
+				db.setConnection();
+				if (db.checkFurniture(name))
+					return Response
 						.seeOther(new URI("../addFurniture.jsp?status=exists"))
-						.build();
-			db.addFurniture(name, type, room, price);
-			db.closeConnection();
-		} finally {
-			db.closeConnection();
+							.build();
+				db.addFurniture(name, type, room, price);
+				db.closeConnection();
+			} catch (ClassNotFoundException e) {
+				System.out.println(e);
+				return Response.status(500)
+						.entity("Error 500: Internal Server Error").build();
+			} finally {
+				db.closeConnection();
+			}
+			return Response.seeOther(new URI("admin/home?status=added")).build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
+					.build();
 		}
-		return Response.seeOther(new URI("admin/home?status=added")).build();
+		catch(SQLException e) {
+			System.out.println(e);
+			return Response.status(500)
+					.entity("Error 500: Internal Server Error").build();
+		}
 	}
 
 	@GET
 	@Path("/editFurniture")
-	public Response editFurniture(@QueryParam("fid") int fid)
-			throws URISyntaxException {
-		if (!Session.isAdmin())
-			return Response.seeOther(new URI("admin/login")).build();
+	public Response editFurniture(@QueryParam("fid") int fid) {
+		try {
+			if (!Session.isAdmin())
+				return Response.seeOther(new URI("admin/login")).build();
 
-		return Response.seeOther(new URI("../editFurniture.jsp?fid=" + fid))
-				.build();
+			return Response.seeOther(new URI("../editFurniture.jsp?fid=" + fid))
+					.build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
+					.build();
+		}
 	}
 
 	@POST
 	@Path("/editFurniture")
 	public Response editFurniture(@FormParam("fid") int fid,
 			@FormParam("name") String name, @FormParam("type") String type,
-			@FormParam("room") String room, @FormParam("price") int price)
-			throws ClassNotFoundException, SQLException, URISyntaxException {
-		if (!Session.isAdmin())
-			return Response.seeOther(new URI("admin/login")).build();
+			@FormParam("room") String room, @FormParam("price") int price) {
+		try {
+			if (!Session.isAdmin())
+				return Response.seeOther(new URI("admin/login")).build();
+			if (fid == 0)
+				addFurniture(name, type, room, price);
 
-		if (fid == 0)
-			addFurniture(name, type, room, price);
-
-		else {
-			JDBC db = new JDBC();
-			try {
-				db.setConnection();
-				db.editFurniture(fid, name, type, room, price);
-				db.closeConnection();
-			} finally {
-				db.closeConnection();
+			else {
+				JDBC db = new JDBC();
+				try {
+					db.setConnection();
+					db.editFurniture(fid, name, type, room, price);
+					db.closeConnection();
+				} catch (ClassNotFoundException e) {
+					System.out.println(e);
+					return Response.status(500)
+							.entity("Error 500: Internal Server Error").build();
+				} finally {
+					db.closeConnection();
+				}
 			}
+			return Response.seeOther(new URI("admin/")).build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
+					.build();
 		}
-		return Response.seeOther(new URI("admin/")).build();
+		catch(SQLException e) {
+			System.out.println(e);
+			return Response.status(500)
+					.entity("Error 500: Internal Server Error").build();
+		}
 	}
 
 	@GET
 	@Path("/deleteFurniture")
-	public Response deleteFurniture(@QueryParam("fid") int fid)
-			throws ClassNotFoundException, SQLException, URISyntaxException {
-		if (!Session.isAdmin())
-			return Response.seeOther(new URI("admin/login")).build();
-
-		JDBC db = new JDBC();
+	public Response deleteFurniture(@QueryParam("fid") int fid) {
 		try {
-			db.setConnection();
-			db.deleteFurniture(fid);
-			db.closeConnection();
-		} finally {
-			db.closeConnection();
+			if (!Session.isAdmin())
+				return Response.seeOther(new URI("admin/login")).build();
+
+			JDBC db = new JDBC();
+			try {
+				db.setConnection();
+				db.deleteFurniture(fid);
+				db.closeConnection();
+			} catch(SQLException e) {
+				System.out.println(e);
+				return Response.status(500)
+						.entity("Error 500: Internal Server Error").build();
+			} finally {
+				db.closeConnection();
+			}
+			return Response.seeOther(new URI("admin/")).build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
+					.build();
 		}
-		return Response.seeOther(new URI("admin/")).build();
+		catch(Exception e) {
+			System.out.println(e);
+			return Response.status(500)
+					.entity("Error 500: Internal Server Error").build();
+		}
 	}
 
 	@GET
 	@Path("changePass")
-	public Response changePassword() throws URISyntaxException {
-		if (!Session.isAdmin())
-			return Response.seeOther(new URI("admin/login")).build();
+	public Response changePassword() {
+		try {
+			if (!Session.isAdmin())
+				return Response.seeOther(new URI("admin/login")).build();
 
-		return Response.seeOther(new URI("../adminpass.jsp")).build();
+			return Response.seeOther(new URI("../adminpass.jsp")).build();
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
+					.build();
+		}
 	}
 
 	@POST
 	@Path("changePass")
 	public Response changePassword(@FormParam("oldpass") String oldpass,
 			@FormParam("newpass") String newpass,
-			@FormParam("newpass2") String newpass2)
-			throws URISyntaxException, ClassNotFoundException, SQLException {
-		if (!Session.isAdmin())
-			return Response.seeOther(new URI("admin/login")).build();
+			@FormParam("newpass2") String newpass2) {
+		try {
+			if (!Session.isAdmin())
+				return Response.seeOther(new URI("admin/login")).build();
 
-		if (!newpass.equals(newpass2))
-			return Response
-					.seeOther(new URI("../adminpass.jsp?status=mismatch"))
+			if (!newpass.equals(newpass2))
+				return Response
+						.seeOther(new URI("../adminpass.jsp?status=mismatch"))
+						.build();
+
+			if (PASS.equals(oldpass))
+				return Response
+						.seeOther(new URI("../adminpass.jsp?status=incorrect"))
+						.build();
+
+			PASS = newpass;
+
+			return Response.seeOther(new URI("../adminpass.jsp?status=true"))
 					.build();
-
-		if (PASS.equals(oldpass))
-			return Response
-					.seeOther(new URI("../adminpass.jsp?status=incorrect"))
+		} catch (URISyntaxException e) {
+			System.out.println(e);
+			return Response.status(404).entity("Error 404: Page Not Found")
 					.build();
-
-		PASS = newpass;
-
-		return Response.seeOther(new URI("../adminpass.jsp?status=true"))
-				.build();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return Response.status(500)
+					.entity("Error 500: Internal Server Error").build();
+		}
 	}
 }
