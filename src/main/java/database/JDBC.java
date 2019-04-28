@@ -195,8 +195,6 @@ public class JDBC implements Database {
 	 * @throws SQLException
 	 */
 	public int addBalance(int user_id, long balance) throws SQLException {
-		if(balance < 0)
-			return 0;
 		balance += this.getBalance(user_id);
 
 		String qry = "UPDATE `wallet` SET `balance`=? WHERE `user_id`=?;";

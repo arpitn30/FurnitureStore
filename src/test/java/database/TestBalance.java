@@ -73,6 +73,6 @@ public class TestBalance {
 	
 	@Test
 	public void testAddBalance2() throws SQLException {
-		assertEquals(0, db.addBalance(1, -2));
+		assertEquals(1, db.addBalance(1, -2));
 	}
 }
