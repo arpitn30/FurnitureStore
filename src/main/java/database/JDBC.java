@@ -55,14 +55,22 @@ public class JDBC implements Database {
 	public void setConnection() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
 
-		String host = "localhost:3306";
+		String host = "arpit-db-instance.cneflhizbmvu.us-west-2.rds.amazonaws.com:3306";
 		String dbName = "shop";
 
 		String URL = "jdbc:mysql://" + host + "/" + dbName;
 		String user = "root";
-		String pass = "root";
+		String pass = "30011996";
 
-		connection = (Connection) DriverManager.getConnection(URL, user, pass);
+		try {
+			connection = (Connection) DriverManager.getConnection(URL, user, pass);
+			System.out.println("Connected to remote database");
+		} catch (SQLException e) {
+			System.out.println("Cannot coonect to remote database");
+			URL = "jdbc:mysql://" + "localhost:3306" + "/" + dbName;
+			connection = (Connection) DriverManager.getConnection(URL, "root", "root");
+			System.out.println("Connected to local database");
+		}
 	}
 
 	/**
